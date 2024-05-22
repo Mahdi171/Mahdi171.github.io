@@ -1,0 +1,681 @@
+---
+title: 'Gorth Sahai Proofs: Zero to Hero!'
+date: 2023-06-08
+permalink: /posts/2012/08/blog-post-4/
+tags:
+  - cool posts
+  - category1
+  - category2
+---
+<!-- wp:paragraph -->
+<p>This is a mirror of the blog posts in <a href="https://tech.mystenlabs.com/groth-sahai-proofs-zero-to-hero/">this link</a> and <a href="https://www.esat.kuleuven.be/cosic/blog/groth_sahai_proofs-zero_to_hero/">this link</a>. Written by <a href="https://tech.mystenlabs.com/author/mahdi/">Mahdi Sedaghat</a>,&nbsp;<a href="https://tech.mystenlabs.com/author/foteini/">Foteini Baldimtsi</a>,&nbsp;<a href="https://tech.mystenlabs.com/author/arnab/">Arnab Roy</a>.</p>
+<!-- /wp:paragraph -->
+
+
+<!-- wp:paragraph -->
+<p><mark style="background-color:#f7f500" class="has-inline-color">This blog post assumes a basic knowledge of cryptography, including pairing-based cryptography as well as what (Non-Interactive) Zero-Knowledge proofs are and what they do. <a href="https://en.wikipedia.org/wiki/Zero-knowledge_proof?ref=tech.mystenlabs.com#The_Ali_Baba_cave">The Ali Baba cave</a> is a simple example of Zero-Knowledge proofs for readers who are unfamiliar with the topic of zero-knowledge proof systems.</mark></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Jens Groth and Amit Sahai's seminal work, <a href="https://eprint.iacr.org/2007/155.pdf">"Efficient Non-Interactive Proof Systems for Bilinear Groups"</a> [GS08] from Eurocrypt 2008, received the <a href="https://www.iacr.org/testoftime/">IACR test-of-time award in 2023</a> due to its impact on many applications like succinct non-interactive arguments. In this blog post, we provide a detailed explanation of this beautiful proof system called GS proofs and lists some interesting applications. Moreover we elaborate on how to implement GS proofs and prove a simple statement based on them. We then investigate its performance in Python using the Charm-Crypto library [JGM+13].</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p> TL;DR: Groth-Sahai proofs offer a relatively efficient method for proving the satisfiability of some quadratic equations in bilinear settings. You can use GS proofs to prove satisfiability of an arithmetic circuit with a proof size that grows linearly in the number of gates and variables. Subsequent zk-SNARKs are more efficient, since they offer constant size proofs. Groth-Sahai still shine in the context of building pairing-based protocols though, since GS proofs offer a natural and direct way to prove statements that arise in pairing-based cryptography, without having to first compile the statement to a circuit. Many signatures and other cryptographic schemes that are “structure-preserving” in the sense that they only operate in groups with pairings that have been proposed because statements about them can be proved directly with GS proofs.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>Zero-Knowledge proofs [GMR85], and, more importantly, a non-interactive version of them have become standard tools in cryptography. Non-Interactive Zero-Knowledge (NIZK) [BFM88] proof systems allow a prover to convince a skeptical verifier about the validity of a statement in a <strong>single</strong> round of communication. The <strong>zero-knowledge property</strong> ensures that the verifier learns nothing beyond the validity of the proof, while <strong>soundness</strong> guarantees that no malicious prover can convince the verifier of false statements. Throughout the almost 40 years since their invention, researchers have been trying to improve the efficiency of these constructions in various aspects, such as proving time, proof size, verifying complexity, and underlying assumptions, in two possible settings: the Random Oracle Model (ROM) and Common Reference String (CRS) model.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">How do GS Proofs compare to recent zk-SNARKs?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Zk-SNARKs (Zero-Knowledge Succinct Non-Interactive Argument of Knowledge) are a family of NIZK with succinct proof size and efficient verification time in the CRS. An important and widely used variant of them is pairing-based zk-SNARKs that are the main focus of this blog post. However, pairing-based zk-SNARKs were proposed in 2010, approximately 2 years after the development of the GS proof systems in [Gro10]. One feature that makes zk-SNARKs very interesting compared to other NIZKs is that they can be applied to any NP-language in a general fashion efficiently. Achieving this fancy feature often requires a complex and trusted setup, as well as costly proving time in the order of the circuit size. Additionally, zk-SNARKs are based on non-falsifiable assumptions. Loosely speaking, the hardness of these assumptions cannot be proven from the hardness of other well-known assumptions like the Discrete Logarithm problem, nor can it be concluded that they are not secure. Although a bit shaky, it is not a major concern in the community at the moment [GW11].</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Similar to zk-SNARKs, Groth-Sahai proofs are also in the CRS model and enable a prover to prove some facts for a class of statements in bilinear groups. As a strong feature, the security of them is proven under the standard assumptions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>🚗 To better understand the differences between standard and non-standard assumptions, consider the safety ratings of cars. A car's safety rating is evaluated through a 5-star program that assesses its performance in crash tests. Standard assumptions can be thought of as those cars with higher ratings, while non-falsifiable assumptions have no certification. They may receive a high or low rating if tested, but their rating is unknown at the moment. However, it's still important to drive safely, as even a car with the lowest rating can still be safe. 🙂</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>The table below summarises the main differences between GS proofs, compared to Groth16’s zk-SNARK, which is the most efficient zk-SNARK to date.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:table -->
+<figure class="wp-block-table"><table><tbody><tr><td class="has-text-align-center" data-align="center"><strong>Construction</strong></td><td class="has-text-align-center" data-align="center"><strong>Underlying Assumption</strong></td><td class="has-text-align-center" data-align="center"><strong>Commitment Size</strong></td><td class="has-text-align-center" data-align="center"><strong>Proof Size</strong></td><td class="has-text-align-center" data-align="center"><strong>CRS size</strong></td><td class="has-text-align-center" data-align="center"><strong>Transparent setup</strong></td></tr><tr><td class="has-text-align-center" data-align="center">Groth16 zk-SNARK [Gro16]</td><td class="has-text-align-center" data-align="center">Non-Falsifiable</td><td class="has-text-align-center" data-align="center">-</td><td class="has-text-align-center" data-align="center">$$2|\mathbb{G}_1|+|\mathbb{G}_2|$$</td><td class="has-text-align-center" data-align="center">$$O(n)$$</td><td class="has-text-align-center" data-align="center">NO</td></tr><tr><td class="has-text-align-center" data-align="center">GS proofs [GS08]</td><td class="has-text-align-center" data-align="center">Falsifiable (ROM)</td><td class="has-text-align-center" data-align="center">$$O(N)$$</td><td class="has-text-align-center" data-align="center">$$4|\mathbb{G}_1|+4|\mathbb{G}_2|$$</td><td class="has-text-align-center" data-align="center">$$O(1)$$</td><td class="has-text-align-center" data-align="center">NO (YES)</td></tr></tbody></table><figcaption class="wp-element-caption">Table of Comparison. GS proofs are described for a Pairing-Product Equation (PPE) statement. \(n\) denotes the depth of circuit. \(N\) denotes the number of pairings in any given Pairing-Product Equation (PPE).</figcaption></figure>
+<!-- /wp:table -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Which Class of Statements can be supported then?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>As mentioned previously, GS proofs support the satisfiability of several quadratic equations over bilinear pairings. These relations are listed as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li><strong>Pairing-Product Equations (PPE)</strong>.</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Multi-Scalar multiplication equations in \(\mathbb{G}_1\).</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Multi-Scalar multiplication equations in \(\mathbb{G}_2\).</strong></li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li><strong>Quadratic equations in \(\mathbb{Z}_p\).</strong></li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>As the PPE relation is the most widely used in GS proofs' applications, we will only discuss them here and leave the other three relations for a future blog post. Let's start with a simple PPE, where \(e(X,Y)=T\). In this relation, the prover wants to prove the knowledge of hidden group elements \(X\) and \(Y\), such that their pairing is equal to a publicly known value \(T\). The prover can commit to \(X\) and \(Y\) (which will be discussed below) to hide them, along with a proof to cancel out the used randomness in the commitment. However, we need to be careful that the proof must be simulatable, which guarantees the zero-knowledge property, and that it is knowledge sound, as shown by Groth and Sahai.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Groth and Sahai proposed two main instantiations: one in symmetric groups under the decisional 2-linear (DLin) assumption and the other one in asymmetric bilinear groups based on the SXDH assumption. In this blog post, we only discuss GS proofs instantiated based on the SXDH assumptions. This is because it is the most efficient instantiation of the GS proof systems. The SXDH assumption states that the DDH assumption is hard in both groups \( \mathbb{G}_1\) and \(\mathbb{G}_2\).</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Main Ingredients:</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The GS proof system uses a combination of commitment schemes and bilinear maps to create a zero-knowledge proof of a statement.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>(Type_III) <strong>Bilinear pairings</strong> are an efficient mathematical operation that maps two elements from two different (source) groups to a multiplicative (target) group, i.e. \(\mathbb{G}_1 \times \mathbb{G}_2 \to \mathbb{G}_T\). Pairings are used in various cryptographic applications, such as identity-based encryption and signature schemes and more importantly in the design of zk-SNARKs. The source groups \(\mathbb{G}_1\) and \(\mathbb{G}_2\) are subgroups of elliptic curves (EC). Elliptic curves are a type of mathematical curve commonly used in cryptography. A subgroup is a subset of a larger group that retains the same group structure. We provide the below image as a superficial introduction to elliptic curves, however if you are interested in learning more about bilinear pairings and elliptic curves, we recommend reading this nice <a href="https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html">blog post</a> [Tom22].</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":18853,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.esat.kuleuven.be/cosic/wp-content/uploads/2023/04/image.png" alt="" class="wp-image-18853"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:paragraph -->
+<p>Loosely speaking, an asymmetric pairing takes as input a point on the first curve, \(\mathbb{G}_1 = \langle G_1\rangle\), for example point \(\alpha G_1\) (where \(\alpha\) times dot operations “\(\circ\)” (briefly described in above image) are computed over the generator \(G_1\)) and a point on curve \(\mathbb{G}_2 = \langle G_2 \rangle\) that has been subjected to the \(\beta\) times dot function on \(G_2\), resulting in point \(\beta G_2\). The pairing maps these two points to a point on the target group \(\mathbb{G}_T = \langle e(G_1, G_2) \rangle\) such that the dot operation is performed on its generator, \(\alpha \beta\) times.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>More formally for an efficiently computable bilinear map \(e: \mathbb{G}_1 \times \mathbb{G}_2 \to \mathbb{G}_T\) we have:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list {"ordered":true} -->
+<ol><!-- wp:list-item -->
+<li>For all \(\alpha , \beta \in \mathbb{Z}_p\), \(e(\alpha G_1, \beta G_2)=e(\beta G_1, \alpha G_2)=\alpha \beta e(G_1, G_2)\).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>\(e(G_1,G_2)\neq 1\).</li>
+<!-- /wp:list-item --></ol>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p><strong>Extended bilinear pairings</strong> [GS08] (Tensor product)<strong>:</strong> For any random scalars \(x_1,x_2,y_1,y_2 \in \mathbb{Z}_p\), where \(p\) is the order of groups, the extended bilinear pairing map, \(E:\mathbb{G}_1^{2\times 1} \times \mathbb{G}_2^{1\times 2} \to \mathbb{G}_T^{2\times 2}\) can be defined as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>$$ E\left(\begin{pmatrix}x_1G_1 \\ x_2G_2 \end{pmatrix}, \begin{pmatrix} y_1G_2 &amp; y_2G_2 \end{pmatrix}\right)=\begin{pmatrix} e(x_1G_1,y_1G_2) &amp; e(x_1G_1,y_2G_2)\\ e(x_2G_1,y_1G_2) &amp; e(x_2G_1,y_2G_2) \end{pmatrix} \; . $$</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>Commitment schemes:</strong> In the Groth-Sahai proof system, the prover shows the existence of witnesses that satisfy a relation. However to keep the witnesses hidden, the prover commits to them and reveals the public elements. Commitments are a well-known cryptographic primitive with three main algorithms: \(\mathsf{Setup}, \mathsf{Commit}\) and \(\mathsf{Open}\) that satisfy the security properties of hiding and binding. Hiding ensures that the commitment does not reveal anything about the committed message \(m\), while the binding property guarantees that the committer cannot open a commitment to two distinct messages.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p><strong>A variant of Pedersen Commitments</strong> [GS08]<strong>:</strong> Pedersen commitments [Ped91] are widely used in various applications. However GS proofs rely on a slightly modified version of this commitment schemes with generators. In a cyclic group \(\mathbb{G}=\langle G \rangle\) with prime order \(p\) and generator \(G\), we recall Pedersen commitments with two generators below:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>\(\mathsf{ck} \gets \mathsf{Setup}(1^\kappa):\) Take the security parameter \(\kappa\) and sample two random group elements \((V_1,V_2)\ \stackrel{\$}{\gets} \mathbb{G}^2\), and return committing key \(\mathsf{ck}=(V_1,V_2)\).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>\(\mathsf{com}\gets \mathsf{Commit}(\mathsf{ck},M):\) To commit to a message \(M \in \mathbb{G}\), sample two random scalars \(\tau_1,\tau_2 \stackrel{\$}{\gets} \mathbb{Z}_p\) and compute the commitment \(\mathsf{com}=M+\tau_1 V_1+ \tau_2 V_2\).</li>
+<!-- /wp:list-item -->
+
+<!-- wp:list-item -->
+<li>\(0/1 \gets \mathsf{Open}(\mathsf{ck,com},M,\tau_1,\tau_2)\): Compute \(\mathsf{com}'=M+\tau_1 V_1+\tau_2 V_2\) and check \(\mathsf{com}'\stackrel{?}{=} \mathsf{com}\) or not.</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>❓ <strong>Why two generators?</strong></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Roughly speaking, this special commitment scheme enables proof simulation.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Pairing-Product Equations:</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p><mark style="background-color:#f7fc00" class="has-inline-color">⚠️ Do you find the equation below difficult to follow? Then skip this section and instead follow the ideas presented in the simple example part. 🙂</mark></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>In a PPE relation, a prover can prove the knowledge of some hidden group elements that satisfy a relation like the equation \((\star)\) below.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>$$ \sum_{i=1}^n{e(X_i,B_i)}+\sum_{j=1}^m{e(A_j,Y_j)}+\sum_{i=1}^n\sum_{j=1}^m{e(X_i,\gamma_{ij}Y_j)}=T \ , \; (\star) $$</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Where \(X_1,\ldots,X_n \in \mathbb{G}_1^n\) and \(Y_1,\ldots,Y_m \in \mathbb{G}_2^m\) are the secret variables which the prover wants to prove some facts about. Additionally \(B_1,\ldots,B_n \in \mathbb{G}_2^n\), \(A_1,\ldots,A_m \in \mathbb{G}_1^m, \Gamma:=\gamma_{ij}\in \mathbb{Z}_p^{n\times m}\), and \(T \in \mathbb{G}_T\) are the constants. If the constant value \(T\) in the described PPE is equal to \(1_{\mathbb{G}_T}\), this construction can guarantee the Zero-Knowledge property. Conversely, if there are two public variables that are paired to each other then GS proof only satisfies witness indistinguishability (WI) which is a weaker notion of ZK. However, as Escala and Groth noted in [EG14], the proof system remains zero-knowledge even if the source groups' generators and the public variables are paired with each other and any public variables pairing results to WI.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>For simplicity, we ignore the \(\gamma_{ij}\) values and assume that they can be injected into the PPE variables directly. This modification improves code efficiency by reducing the number of group exponentiations in the verification phase by a factor of n+m.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:paragraph -->
+<p>To clarify, many pairing-based signatures can be verified if a pairing product equation (PPE) holds for a message. Therefore, a prover can prove knowledge of hidden signature components and a corresponding message that pass the verification, i.e. satisfy a PPE. We will discuss this useful relation later and its applications to anonymous credential systems.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">GS Proofs: How do they work?</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>As we already mentioned, GS-proofs use the commit-and-prove paradigm; The prover commits to hidden group elements using a set of fresh random values, while the proof carries some form of the used random values to cancel them out during the verification. Thanks to bilinear pairings that enables exponent multiplication over group elements while the commitment enables witness hiding. Note that in GS proofs, the opening function of the commitment scheme is not used, and the witnesses will remain hidden.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>In some parts, we used a combination of techniques discussed in the initial paper [GS08] and the Escala and Groth paper [EG14]. In order to maintain consistency with the code, we have made slight modifications to the variables and inputs used in the algorithms.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>\(\mathsf{CRS}\gets \mathsf{(Trusted)Setup}(1^\kappa):\) For any security parameter \(\kappa\) and an asymmetric bilinear pairing description, \((\mathbb{G}_1, \mathbb{G}_2, \mathbb{G}_T, p, e, G_1,G_2)\), the setup can be run independently of the pairing product equations, and the same parameters can be used for multiple equations. The prover and verifier use the same CRS to produce and verify the proof, respectively. The CRS contains four pairs of Pedersen commitment keys: two pairs for the first group \(\mathbb{G}_1\), and two pairs for the second group, \(\mathbb{G}_2\).</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{CRS}=(V_{10}, V_{11}, W_{10}, W_{11}, V_{20}, V_{21}, W_{20}, W_{22}) \in \mathbb{G}_1^4 \times \mathbb{G}_2^4 \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Note that the setup can be performed transparently using public randomness and random oracle models, and no trust to a central entity is needed and this can be seen as an obvious advantage of GS proofs compared to zk-SNARKs: as they either rely on a trusted party or complex trust mitigation techniques like MPC (ceremonies).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Before describing the committing phase, we need to perform some arithmetization on any given PPE relation. For simplicity, especially in the implementation of this construction, we merge the secret and public variables into two main vectors, \(\vec X \in \mathbb{G}_1^N\) and \(\vec Y \in \mathbb{G}_2^N\), where \(N=m+n\). These vectors include both public and secret values such that the pairwise pairing operation \(e(\vec X,\vec Y)=T\) holds. By defining the vectors this way, we can rewrite the PPE as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ e(\vec X, \vec Y)= \sum_{i=1}^N{e(X_i,Y_i)}=T . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>We can achieve this by placing all elements from the first group into vector \(\vec X\) and all elements from the second group into vector \(\vec Y\), including both public and hidden values. Additionally, we must define identifier vectors \(\vec C_x\) and \(\vec C_y\) to keep track of the hidden and public variables in \(\vec X\) and \(\vec Y\), respectively:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ C_x[i] = \left \{ \begin{aligned} &amp;1 &amp;&amp; \text{if}\ X[i] \in \text{witnesses} \\ &amp;0 &amp;&amp; \text{otherwise} \end{aligned} \right. \; \; C_y[i] = \left \{ \begin{aligned} &amp;1 &amp;&amp; \text{if}\ Y[i] \in \text{witnesses} \\ &amp;0 &amp;&amp; \text{otherwise} \end{aligned} \right. \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>By forming these four vectors we are ready to run the commit function as follows:</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>\(\mathsf{Commit}(\mathsf{CRS},\vec X,\vec Y,\vec C_x,\vec C_y)\): If \(C_x[i]=1\), it samples random integers \(r_{i1},s_{i1}\stackrel{\$}{\gets} \mathbb{Z}_p\), which enable the witnesses to be hidden, else it assigns randomness to zero to reveal the public values. The commitment to each element \(X_i \in \vec X\) includes two commitments, discussed above. The first one is a commitment to the identity value under randomnesses \(r_{i1}\) and \(s_{i1}\) w.r.t \(V_{10}\) and \(V_{11}\) keys. The second commitment is to the group element \(X_i \in \mathbb{G}_1\) under the same randomnesses, however computed based on the \(W_{10}\) and \(W_{11}\) commitment keys. In the other words we have:</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>\[\mathsf{com}_{X_i}=\begin{pmatrix} r_{i1}V_{10}+s_{i1}V_{11} \\ X_i + r_{i1} W_{10}+s_{i1}W_{11} \end{pmatrix} \in \mathbb{G}_1^{2 \times 1} \; .\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>The prover keeps committing to all elements in \(\vec X\). As the randomnesses are assigned to zero for public variables, these commitments look as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\mathsf{com}_{X_i}=\begin{pmatrix} 1_{\mathbb{G}_1} \\ X_i \end{pmatrix} \in \mathbb{G}_1^{2 \times 1} \; .\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Similarly, the prover commits to all elements in the second groups, i.e. \(Y_i \in \vec Y\), by sampling random integers \(r_{i2}\) and \(s_{i2}\), as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>$$\mathsf{com}_{Y_i}=\begin{pmatrix} r_{i2}V_{20}+s_{i2}V_{21} &amp; Y_i + r_{i2} W_{20}+s_{i2} W_{21} \end{pmatrix} \in \mathbb{G}_2^{1\times 2} \;$$</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>For any public variable in \(\vec Y\) we have:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>$$\mathsf{com}_{Y_i}=\begin{pmatrix} 1_{\mathbb{G}_2} &amp; Y_i \end{pmatrix}\in \mathbb{G}_2^{1 \times 2} \; .$$</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>\(\mathsf{Prove}(\mathsf{CRS},\vec X, \vec Y,, \vec{\mathsf{com}_x},\vec{\mathsf{com}}_y, \vec r,\vec s)\): After committing to the witnesses the prover runs the prove algorithm. Note that the proof size is constant and it contains 8 group elements independent of the size of \(\vec X\) and \(\vec Y\) defined as follows:</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{V_1}=\begin{pmatrix} \sum_{i=1}^N{r_{i1}} \mathsf{com}_{Y_i}[0] &amp; \sum_{i=1}^N{r_{i1}} \mathsf{com}_{Y_i}[1] \end{pmatrix} \in \mathbb{G}_2^{1 \times 2}\; ,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{W_1}=\begin{pmatrix} \sum_{i=1}^N{s_{i1}} \mathsf{com}_{Y_i}[0] &amp; \sum_{i=1}^N{s_{i1}} \mathsf{com}_{Y_i}[1] \end{pmatrix} \in \mathbb{G}_2^{1 \times 2} \; ,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{V_2}=\begin{pmatrix} 1_{\mathbb{G}_1} \\ \sum_{i=1}^N{r_{i2}} X_{i} \end{pmatrix} \in \mathbb{G}_1^{2\times 1} \; , \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{W_2}=\begin{pmatrix} 1_{\mathbb{G}_1}  \\ \sum_{i=1}^N{s_{i2}} X_{i} \end{pmatrix} \in \mathbb{G}_1^{2 \times 1} \; , \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>where \(\mathsf{com}_{Y_i}[0]\) and \(\mathsf{com}_{Y_i}[1]\) denote the first and second entries in the dual commitment \(\mathsf{com}_{Y_i}\). The prover must first re-randomise the proofs, which allows for the reuse of commitments in the proofs of different statements, even when these statements depend on previous commitments and proofs. Thus the prover samples random integers \(\alpha, \beta, \gamma, \delta \stackrel{\$}{\gets} \mathbb{Z}_p^4\) and then computes:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{V_1}=\begin{pmatrix} \sum_{i=1}^N{r_{i1}} \mathsf{com}_{Y_i}[0]{+\alpha V_{20}+\beta W_{20}} &amp; \sum_{i=1}^N{r_{i1}} \mathsf{com}_{Y_i}[1]{+\alpha V_{21}+\beta W_{21}} \end{pmatrix} \in \mathbb{G}_2^{1\times 2}\; ,\] </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{W_1}=\begin{pmatrix} \sum_{i=1}^N{s_{i1}} \mathsf{com}_{Y_i}[0]{+\gamma V_{20}+\delta W_{20}} &amp; \sum_{i=1}^N{s_{i1}} \mathsf{com}_{Y_i}[1]{+\gamma V_{21}+\delta W_{21}} \end{pmatrix} \in \mathbb{G}_2^{1\times 2} \; ,\] </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{V_2}=\begin{pmatrix} {-\alpha V_{10}-\gamma W_{10}} \\ \sum_{i=1}^N{r_{i2}} X_{i}-\alpha V_{11}-\gamma W_{11} \end{pmatrix} \in \mathbb{G}_1^{2\times 1} \; ,\] </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{W_2}=\begin{pmatrix} {-\beta V_{10}-\delta W_{10}} \\ \sum_{i=1}^N{s_{i2}} X_{i}{-\beta V_{11}-\delta W_{11}} \end{pmatrix} \in \mathbb{G}_1^{2\times 1} \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>This gives us the randomised proof \(\pi=(\pi_{V_1},\pi_{V_2},\pi_{W_1},\pi_{W_2})\) that is the final output of this algorithm.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:list -->
+<ul><!-- wp:list-item -->
+<li>\(\mathsf{Verify}(\mathsf{CRS},\pi,\mathsf{\vec{com}}_X,\mathsf{\vec{com}}_Y)\): The verifier checks the validity of the proof by checking the following equation:</li>
+<!-- /wp:list-item --></ul>
+<!-- /wp:list -->
+
+<!-- wp:paragraph -->
+<p>\[ \sum_{i=1}^N{E({\mathsf{com}_{X_i}}, {\mathsf{com}_{Y_i}})}=\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[T+E\left(\begin{pmatrix}V_{10} \\ V_{11} \end{pmatrix}, \pi_{V_1}\right)+ E\left(\begin{pmatrix}W_{10} \\ W_{11} \end{pmatrix}, \pi_{W_1}\right)+ E\left(\pi_{V_2},\begin{pmatrix}V_{20} &amp; V_{21} \end{pmatrix}\right)+ E\left(\pi_{W_2},\begin{pmatrix}W_{20} &amp; W_{21} \end{pmatrix}\right) \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>To check the validity of a proof created based on a PPE of N values, the verifier by running the above function needs to compute \(4(N+4)\) pairings. The factor 4 mainly comes from the extended pairing E that we defined above and of course this is not practical in most cases especially when N is sufficiently large. Herold et al. in [HHK+17] discuss a nice technique of aggregation for GS proofs and we use a well-known batching techniques to reduce the number of pairings needed. We will not delve into the details of the technique used. However, in this scenario, the soundness error is at most \(2/p\). This reduces the number of pairings to only \(N+4\) to check the validity of the same proof that is a considerable improvement. Note that the batched verification algorithm is not deterministic. However, one feature that makes it more interesting is that it only needs 4 more pairings compared to the PPE checking assuming all elements are in plain. Thus any construction that can be verified by pairing equation checkings can be lifted to a zero-knowledge proof. Instead of revealing all inputs, the prover can hide some of them and now with just 4 more pairings the statement is still verifiable.</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">A Simple Example: Proof of knowledge of a BLS signature with public message</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>BLS signatures [BLS01] over asymmetric bilinear pairings are a widely used scheme in different applications. Imagine the case that a user wants to prove the knowledge of a secret BLS signature, \(\sigma={\mathsf{sk}} H(m)\) on a public message \(m\) to a verifier, where \(H:\{0,1\}^* \to \mathbb{G}_1\) is a hash-to-curve function. This scenario for instance occurs in anonymous credential systems. In that setting usually both the message and the signature must be kept hidden and the prover only proves a predicate on message (unlinkability property). However, for simplicity in this example we assume the message to be public (if we opted to also hide the message, then we would have to prove knowledge of the pre-image of the hash function which requires zk-SNARKs). Coming back to BLS signatures, a signature \(\sigma\) is valid if the following equation holds:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ e(H(m),\mathsf{vk})=e(\sigma,G_2)\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To turn this equation to a PPE, we can write:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[e(H(m),\mathsf{vk})+e(\sigma,-G_2)=1_{\mathbb{G}_T}. \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Thus we can define the vector \(\vec X=(H(m),\sigma)\) and also \(\vec Y=(\mathsf{vk},-G_2)\). As we agreed only the signature must remain hidden then we have, \(\vec C_x=(0,1)\) and \(\vec C_y=(0,0)\). The prover samples two integers \(r_{21},s_{21} \stackrel{\$}{\gets} \mathbb{Z}_p^*\) and then forms \(\vec r=([0,0],[r_{21},s_{21}])\) and \(\vec s=([0,0],[0,0])\), and commits to the variables as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\mathsf{com}_{H(m)}=\begin{pmatrix} 1_{\mathbb{G}_1} \\ H(m) \end{pmatrix} \in \mathbb{G}_1^{2\times 1} \;,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\mathsf{com}_{\mathsf{vk}}=\begin{pmatrix} 1_{\mathbb{G}_2} &amp; \mathsf{vk} \end{pmatrix}\in \mathbb{G}_2^{1\times 2} \; ,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{com}_\sigma=\begin{pmatrix} r_{21}V_{10}+s_{21}V_{11} \\ \ \sigma + r_{21} W_{10}+s_{21}W_{11} \end{pmatrix} \in \mathbb{G}_1^{2\times 1} \; ,\] </p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{com}_{G_2}=\begin{pmatrix} 1_{\mathbb{G}_2} &amp; -G_2 \end{pmatrix}\in \mathbb{G}_2^{1 \times 2} \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Now the prover first samples the proof re-randomising integers \(\alpha, \beta, \gamma, \delta \stackrel{\$}{\gets} \mathbb{Z}_p^4\), and then computes the proof components as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{V_1}=\begin{pmatrix} \alpha V_{20}+\beta W_{20} &amp; -r_{21}G_2+\alpha V_{21}+\beta W_{21} \end{pmatrix} \in \mathbb{G}_2^{1\times 2} \; ,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{W_1}=\begin{pmatrix} \gamma V_{20}+\delta W_{20} &amp; -s_{21}G_2+\gamma V_{21}+\delta W_{21} \end{pmatrix} \in \mathbb{G}_2^{1\times 2} \; ,\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\pi_{V_2}=\begin{pmatrix} -\alpha V_{10}-\gamma W_{10} \\ -\alpha V_{11}-\gamma W_{11} \end{pmatrix}\in \mathbb{G}_1^{2\times 1} \; , \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \pi_{W_2}=\begin{pmatrix} -\beta V_{10}-\delta W_{10} \\ -\beta V_{11}-\delta W_{11} \end{pmatrix}\in \mathbb{G}_1^{2\times 1} \;. \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>To show the above proof is valid, for the left-hand side (LHS) of the verification equation, we have:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{LHS}=E\left(\begin{pmatrix} 1_{\mathbb{G}_1} \\ H(m) \end{pmatrix},\begin{pmatrix} 1_{\mathbb{G}_2} &amp; \mathsf{vk} \end{pmatrix}\right)+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[E\left(\begin{pmatrix} r_{21}V_{10}+s_{21}V_{11} \\ \sigma + r_{21} W_{10}+s_{21}W_{11} \end{pmatrix},\begin{pmatrix} 1_{\mathbb{G}_2} &amp; -G_2 \end{pmatrix}\right)=\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \begin{pmatrix} e(1_{\mathbb{G}_1},1_{\mathbb{G}_2}) &amp; e(1_{\mathbb{G}_1},\mathsf{vk}) \\ e(H(m),1_{\mathbb{G}_2}) &amp; e(H(m),\mathsf{vk}) \end{pmatrix}+ \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \begin{pmatrix} e(r_{21}V_{10}+s_{21}V_{11}, 1_{\mathbb{G}_2}) &amp; e(r_{21}V_{10}+s_{21}V_{11},-G_2)\\ e(\sigma + r_{21} W_{10}+s_{21}W_{11},1_{\mathbb{G}_2}) &amp; e(\sigma + r_{21} W_{10}+s_{21}W_{11},-G_2) \end{pmatrix}=\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \begin{pmatrix} 1_{\mathbb{G}_T} &amp; 1_{\mathbb{G}_T}\\ 1_{\mathbb{G}_T} &amp; e(H(m),\mathsf{vk}) \end{pmatrix} + \begin{pmatrix} 1_{\mathbb{G}_T} &amp; -r_{21} e(V_{10},G_2) - s_{21}e(V_{11},G_2)\\ 1_{\mathbb{G}_T} &amp; -e(\sigma,G_2) -r_{21} e(W_{10},G_2)-s_{21} e(W_{11},G_2) \end{pmatrix}=\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ e(H(m),\mathsf{vk}) -r_{21} e(V_{10},G_2) - s_{21} e(V_{11},G_2)- e(\sigma,G_2) -r_{21} e(W_{10},G_2)-s_{21} e(W_{11},G_2)\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>If the signature is a valid on message \(m\), then we have \(e(H(m),\mathsf{vk})+e(\sigma,-G_2)=T\) and we can write:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{LHS}=T -r_{21} e(V_{10},G_2) - s_{21}e(V_{11},G_2) -r_{21} e(W_{10},G_2)-s_{21} e(W_{11},G_2) \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>On the other hand the RHS of the verification equation can be computed as follows:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \mathsf{RHS}=E\left(\begin{pmatrix}V_{10} \\ V_{11} \end{pmatrix}, \pi_{V_1}\right)+ E\left(\begin{pmatrix}W_{10} \\ W_{11} \end{pmatrix}, \pi_{W_1}\right)+ E\left(\pi_{V_2},\begin{pmatrix}-V_{20} &amp; V_{21} \end{pmatrix}\right)+E\left(\pi_{W_2},\begin{pmatrix}W_{20} &amp; W_{21} \end{pmatrix}\right) = \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \ E\left(\begin{pmatrix}V_{10} \\ V_{11} \end{pmatrix}, \begin{pmatrix} {\alpha V_{20}+\beta W_{20}} &amp; -r_{21}G_2{+\alpha V_{21}+\beta W_{21}} \end{pmatrix}\right)+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ E\left(\begin{pmatrix}W_{10} \\ W_{11} \end{pmatrix}, \begin{pmatrix} {\gamma V_{20}+\delta W_{20}} &amp; -s_{21}G_2{+\gamma V_{21}+\delta W_{21}} \end{pmatrix}\right)+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[E\left(\begin{pmatrix} {-\alpha V_{10}-\gamma W_{10}} \\ {-\alpha V_{11}-\gamma W_{11}} \end{pmatrix},\begin{pmatrix}V_{20} &amp; V_{21} \end{pmatrix}\right)+ \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[E\left(\begin{pmatrix} {-\beta V_{10}-\delta W_{10}} \\ {-\beta V_{11}-\delta W_{11}} \end{pmatrix},\begin{pmatrix}W_{20} &amp; W_{21} \end{pmatrix}\right) \; . \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>As we mentioned above, \(\alpha, \beta, \gamma, \delta\) are randomising factors for the proof and for simplicity we assume they are all equal to \(0\). Thus we have:</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ E\left(\begin{pmatrix}V_{10} \\ V_{11} \end{pmatrix}, \begin{pmatrix} 1_{\mathbb{G}_2} &amp; -r_{21}G_2 \end{pmatrix}\right)+E\left(\begin{pmatrix}W_{10} \\ W_{11} \end{pmatrix}, \begin{pmatrix} 1_{\mathbb{G}_2} &amp; -s_{21}G_2 \end{pmatrix}\right)+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[E\left(\begin{pmatrix} 1_{\mathbb{G}_1} \\ 1_{\mathbb{G}_1} \end{pmatrix},\begin{pmatrix}V_{20} &amp; V_{21} \end{pmatrix}\right)+ E\left(\begin{pmatrix} 1_{\mathbb{G}_1} \\ 1_{\mathbb{G}_1} \end{pmatrix},\begin{pmatrix}W_{20} &amp; W_{21} \end{pmatrix}\right)= \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ -r_{21} e(V_{10},G_2) - s_{21}e(V_{11},G_2) -r_{21} e(W_{10},G_2)-s_{21} e(W_{11},G_2) \;. \]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>However, in below we show that even with the above random scalars, the left-hand side and right-hand side are equal. This means that the GS proof is complete. You can find more interesting examples in <a href="https://crypto.ethereum.org/blog/groth-sahai-blogpost">this blogpost</a> [VKKM22].</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ E\left(\begin{pmatrix}V_{10} \\ V_{11} \end{pmatrix}, \begin{pmatrix} {\alpha V_{20}+\beta W_{20}} &amp; {\alpha V_{21}+\beta W_{21}} \end{pmatrix}\right)+ E\left(\begin{pmatrix}W_{10} \\ W_{11} \end{pmatrix}, \begin{pmatrix} {\gamma V_{20}+\delta W_{20}} &amp; {\gamma V_{21}+\delta W_{21}} \end{pmatrix}\right)+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ E\left(\begin{pmatrix} {-\alpha V_{10}-\gamma W_{10}} \\ {-\alpha V_{11}-\gamma W_{11}} \end{pmatrix},\begin{pmatrix}V_{20} &amp; V_{21} \end{pmatrix}\right)+ E\left(\begin{pmatrix} {-\beta V_{10}-\delta W_{10}} \\ {-\beta V_{11}-\delta W_{11}} \end{pmatrix},\begin{pmatrix}W_{20} &amp; W_{21} \end{pmatrix}\right)=\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p> \[ \begin{pmatrix} e(V_{10},{\alpha V_{20}+\beta W_{20}}) &amp; e(V_{10},{\alpha V_{21}+\beta W_{21}})\\ e(V_{11},{\alpha V_{20}+\beta W_{20}}) &amp; e(V_{11},{\alpha V_{21}+\beta W_{21}}) \end{pmatrix}+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \begin{pmatrix} e(W_{10},{\gamma V_{20}+\delta W_{20}}) &amp; e(W_{10},{\gamma V_{21}+\delta W_{21}})\\ e(W_{11},{\gamma V_{20}+\delta W_{20}}) &amp; e(W_{11},{\gamma V_{21}+\delta W_{21}}) \end{pmatrix}+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[\begin{pmatrix} e({-\alpha V_{10}-\gamma W_{10}},V_{20}) &amp; e({-\alpha V_{10}-\gamma W_{10}},V_{21})\\ e({-\alpha V_{11}-\gamma W_{11}},V_{20}) &amp; e({-\alpha V_{11}-\gamma W_{11}},V_{21}) \end{pmatrix}+\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>\[ \begin{pmatrix} e({-\beta V_{10}-\delta W_{10}},W_{20}) &amp; e({-\beta V_{10}-\delta W_{10}},W_{21})\\ e({-\beta V_{11}-\delta W_{11}},W_{20}) &amp; e({-\beta V_{11}-\delta W_{11}},W_{21}) \end{pmatrix}=\ \begin{pmatrix} 1_{\mathbb{G}_T} &amp; 1{\mathbb{G}_T}\\ 1_{\mathbb{G}_T} &amp; 1_{\mathbb{G}_T} \end{pmatrix} \; .\]</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Note that GS proofs cannot prove the knowledge of a BLS signature with hidden messages as the prover needs to prove the pre-image of the hash function which is a non-linear operation.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:quote -->
+<blockquote class="wp-block-quote"><!-- wp:paragraph -->
+<p>Structure-preserving signatures and commitments [AFG+10] are primitives that are compatible with GS proof systems. It is an interesting area of research to explore more on efficient GS-friendly primitives like threshold primitives, for instance [CKP+22].</p>
+<!-- /wp:paragraph --></blockquote>
+<!-- /wp:quote -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Performance Evaluation</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>We ran the prototype above on Ubuntu 22.04 with 16 GB RAM, an Intel Core i7-9850H CPU @ 2.60 GHz. The code is executed over the BN-254 curve in Charm-Crypto [JGM+13], and for our machine, it takes around 23 ms to compute a single pairing operation over this curve. The figures below show the required time to commit, prove, and verify a proof versus the number of variables in the PPE. During the commit and prove time, it is assumed that all variables are hidden and belong to the set of witnesses. The open-source implementation is available in <a href="https://github.com/Mahdi171/Groth-Sahai">this repository</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:image {"id":18854,"sizeSlug":"full","linkDestination":"none"} -->
+<figure class="wp-block-image size-full"><img src="https://www.esat.kuleuven.be/cosic/wp-content/uploads/2023/04/image-1.png" alt="" class="wp-image-18854"/></figure>
+<!-- /wp:image -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Applications of Groth-Sahai Proof Systems</h2>
+<!-- /wp:heading -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Anonymous Credential Systems</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Anonymous credential systems are used to allow a user to prove their identity to a verifier without revealing any sensitive information. The GS proof system can be used in anonymous credential systems to prove that a user possesses a certain credential (signature on lists of attributes) without revealing any information about the credential itself.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Electronic Cash Systems</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Electronic cash systems allow a user to spend digital cash without revealing their identity (and are a subclass of anonymous credentials). The GS proof systems can be used in electronic cash systems to prove that the user possesses a digital coin without revealing any information about the coin itself. Electronic cash systems are useful in scenarios where privacy is important, such as online transactions.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Non-malleable Cryptographic Primitives</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Many cryptographic primitives, including encryption, signature, and commitment schemes can exhibit malleability. A malleable scheme is one in which the primitive output can be modified by the adversary to still exhibit validity, possibly with respect to a related set of inputs. This is an undesirable characteristic in many scenarios. It was observed in several works [NY90, Sch01] that augmenting the output with a NIZK proof of its validity makes it non-malleable. It turns out many of these schemes have linear or pairing product structures, and thus can readily use GS NIZKs to instantiate the non-malleable version.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading {"level":3} -->
+<h3 class="wp-block-heading">Structure-Preserving Cryptography</h3>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>On the flip side, the efficiency of the GS proof system motivated the research community to design cryptographic primitives, like signatures, employing only linear and PPE equations over bilinear groups. In contrast to hash-based signatures, like BLS and RSA, these signatures are called structure-preserving signatures. It’s difficult to employ GS proofs for hash-based construction as verifying the hash itself is of high algebraic degree. A long line of works starting from [AFG+10] have significantly improved the efficiency and concrete security of SPS. More sophisticated schemes, like group and blind signatures, have also been made structure preserving and have enjoyed efficiency gains from GS proofs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Related Work</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>The Schnorr proof system [Sch89], was the first ZK proof system for linear equations in group exponents. It was remarkably efficient, with proof size linear in the statement and witness sizes. One drawback was that it was in the Random Oracle model. The GS proof system was the first to achieve linear proof size in this setting using standard assumptions like DDH, in bilinear groups. The GS proof system inspired a long line of work leading to efficiency gains. The GS proof system has a universal CRS which works for any language. QA-NIZKs [CR13] obtained more efficient NIZKs in the setting where the CRS could be generated from the language. Subsequently, Libert et al. [LPJY14] achieved constant size QA-NIZKs, with later works [CR14, EW14] coming up with the shortest known NIZKs.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">Final Thoughts</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>Groth-Sahai proofs have become an important tool in modern cryptography. They provide a way to prove the correctness of a statement without revealing any sensitive information. The GS proof system has a wide range of applications, including anonymous credential systems, electronic cash systems, e-voting, blind signatures, threshold issuance anonymous credentials and etc. As the field of cryptography continues to evolve, we can expect to see even more applications for the GS proof systems in the future.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>Finally we stress that we did not discuss the security properties of GS proofs in this document. Volkov et al. in this blog post [VKKM22] has discussed these properties, and we suggest reading it as a complementary document. We would like to thank to Jens Groth and Daniel Slamanig for their helpful discussions and comments.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:heading -->
+<h2 class="wp-block-heading">References:</h2>
+<!-- /wp:heading -->
+
+<!-- wp:paragraph -->
+<p>[GS08] Groth, J., Sahai, A., “Efficient Non-interactive Proof Systems for Bilinear Groups”. Eurocrypt’08.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[JGM+13] Akinyele, Joseph A., Christina Garman, Ian Miers, Matthew W. Pagano, Michael Rushanan, Matthew Green, and Aviel D. Rubin. “Charm: a framework for rapidly prototyping cryptosystems.”&nbsp;<em>Journal of Cryptographic Engineering’13.</em></p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[GMR85] Goldwasser, Shafi, Silvio Micali, and Chales Rackoff. “The knowledge complexity of interactive proof-systems.”, STOC’85.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[BFM88] Blum, Manuel, Paul Feldman, and Silvio Micali. “Non-Interactive Zero-Knowledge and its applications.”, STOC’88.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[GW11] Gentry, Craig, and Daniel Wichs. “Separating succinct non-interactive arguments from all falsifiable assumptions.”, STOC’11.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[CR14] Jutla, Charanjit S., and Arnab Roy. “Switching lemma for bilinear tests and constant-size NIZK proofs for linear subspaces.”, Crypto’14.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Gro16] Groth, Jens. “On the size of pairing-based non-interactive arguments.”, Eurocrypt’16*.*</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Ped91] Pedersen, Torben Pryds. “Non-interactive and information-theoretic secure verifiable secret sharing.”, Crypto’91.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Gro10] Jens Groth. “Short pairing-based non-interactive zero-knowledge arguments”. ASIACRYPT’10.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[HHK+17] Herold, Gottfried, Max Hoffmann, Michael Klooß, Carla Ràfols, and Andy Rupp. “New techniques for structural batch verification in bilinear groups with applications to Groth-Sahai proofs.”, ACM CCS’17.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[VKKM22] Mikhail Volkhov, Dimitris Kolonelos, Dmitry Khovratovich, Mary Maller, “Groth-Sahai Proofs Are Not That Scary”, June 6, 2022. <a href="https://crypto.ethereum.org/blog/groth-sahai-blogpost"></a><a href="https://crypto.ethereum.org/blog/groth-sahai-blogpost">https://crypto.ethereum.org/blog/groth-sahai-blogpost</a>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[AFG+10] Abe, Masayuki, Georg Fuchsbauer, Jens Groth, Kristiyan Haralambiev, and Miyako Ohkubo. “Structure-preserving signatures and commitments to group elements.”, Crypto’10.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[CKP+22] Crites, Elizabeth, Markulf Kohlweiss, Bart Preneel, Mahdi Sedaghat, and Daniel Slamanig. “Threshold Structure-Preserving Signatures.”&nbsp;<em>Cryptology ePrint Archive</em> (2022).</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[EG14] Escala, Alex, and Jens Groth. “Fine-Tuning Groth-Sahai proofs.”, PKC’14.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[BLS01] Boneh, D., Lynn, B., Shacham, H., “Short signatures from the Weil pairing”. AsiaCrypt’01.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Sch89] Schnorr, C.P.: “Efficient identification and signatures for smart cards.”, Crypto’89.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[CR13] Jutla, Charanjit S., and Arnab Roy. "Shorter Quasi-Adaptive NIZK Proofs for Linear Subspaces", Asiacrypt’<em>13</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[LPJY14] Libert, Benoît, Thomas Peters, Marc Joye, and Moti Yung. "Non-malleability from malleability: Simulation-sound quasi-adaptive NIZK proofs and CCA2-secure encryption from homomorphic signatures", <em>Eurocrypt’14</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[KW15] Kiltz, Eike, and Hoeteck Wee. "Quasi-adaptive NIZK for linear subspaces revisited", <em>Eurocrypt’15</em>.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Sah01] Sahai, Amit. “Simulation-sound non-interactive zero knowledge”, 2001</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[NY90] Naor, Moni, and Moti Yung. "Public-key cryptosystems provably secure against chosen ciphertext attacks", STOC’90.</p>
+<!-- /wp:paragraph -->
+
+<!-- wp:paragraph -->
+<p>[Tom22] Tomescu, A., “Pairings or Bilinear maps.” <a href="https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html"></a><a href="https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html">https://alinush.github.io/2022/12/31/pairings-or-bilinear-maps.html</a>.</p>
+<!-- /wp:paragraph -->
