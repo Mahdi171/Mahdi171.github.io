@@ -39,6 +39,14 @@
                   <li><a href="mailto:{{ author.email }}"><i class="fas fa-fw fa-envelope" aria-hidden="true"></i> {{
                               author.email_label | default: "Email" }}</a></li>
                   {% endif %}
+                  {% if author.googlescholar %}
+                  <li><a target="_blank" href="{{ author.googlescholar }}"><i class="fas fa-fw fa-graduation-cap"></i>
+                              Google
+                              Scholar</a></li>
+                  {% endif %}
+                  {% if author.dblp %}
+                  <li><a target="_blank" href="{{ author.dblp }}"><i class="ai ai-dblp ai-fw"></i> dblp</a></li>
+                  {% endif %}
                   {% if author.keybase %}
                   <li><a target="_blank" href="https://keybase.io/{{ author.keybase }}"><i class="fas fa-fw fa-key"
                                     aria-hidden="true"></i> Keybase</a></li>
@@ -51,6 +59,11 @@
                   {% if author.twitter %}
                   <li><a target="_blank" href="https://twitter.com/{{ author.twitter }}"><i
                                     class="fab fa-fw fa-twitter-square" aria-hidden="true"></i> Twitter</a></li>
+                  {% endif %}
+                  {% if author.github %}
+                  <li><a target="_blank" href="https://github.com/{{ author.github }}"><i class="fab fa-fw fa-github"
+                                    aria-hidden="true"></i>
+                              Github</a></li>
                   {% endif %}
                   {% if author.mastodon %}
                   <li><a target="_blank" rel="me"
@@ -86,11 +99,6 @@
                   {% if author.bitbucket %}
                   <li><a target="_blank" href="https://bitbucket.org/{{ author.bitbucket }}"><i
                                     class="fab fa-fw fa-bitbucket" aria-hidden="true"></i> Bitbucket</a></li>
-                  {% endif %}
-                  {% if author.github %}
-                  <li><a target="_blank" href="https://github.com/{{ author.github }}"><i class="fab fa-fw fa-github"
-                                    aria-hidden="true"></i>
-                              Github</a></li>
                   {% endif %}
                   {% if author.stackoverflow %}
                   <li><a target="_blank" href="https://www.stackoverflow.com/users/{{ author.stackoverflow }}"><i
@@ -144,14 +152,6 @@
                                     aria-hidden="true"></i>
                               Vine</a>
                   </li>
-                  {% endif %}
-                  {% if author.googlescholar %}
-                  <li><a target="_blank" href="{{ author.googlescholar }}"><i class="fas fa-fw fa-graduation-cap"></i>
-                              Google
-                              Scholar</a></li>
-                  {% endif %}
-                  {% if author.dblp %}
-                  <li><a target="_blank" href="{{ author.dblp }}"><i class="ai ai-dblp ai-fw"></i> dblp</a></li>
                   {% endif %}
                   {% if author.pubmed %}
                   <li><a target="_blank" href="{{ author.pubmed }}"><i class="ai ai-pubmed ai-fw"></i> PubMed</a>
