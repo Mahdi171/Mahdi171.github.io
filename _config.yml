@@ -11,9 +11,9 @@ title                    : "Welcome to My Homepage"
 title_separator          : "-"
 name                     : &name "Mahdi Sedaghat"
 description              : &description "personal description"
-url                      : https://mahdi171.github.io/sedaghat.github.io/ # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
+url                      : https://mahdi171.github.io # the base hostname & protocol for your site e.g. "https://mmistakes.github.io"
 baseurl                  : "" # the subpath of your site, e.g. "/blog"
-repository               : "Mahdi171/sedaghat.github.io"
+repository               : "Mahdi171/Mahdi171.github.io"
 teaser                   :  # filename of teaser fallback teaser image placed in /images/, .e.g. "500x300.png"
 breadcrumbs              : false # true, false (default)
 words_per_minute         : 160
