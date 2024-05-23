@@ -52,7 +52,7 @@ Open Source Projects
 ======
 - **Unlinkable Policy-Compliant Signatures**: Prototyping the PCS and several implementations for ul-PCS schemes. [Link](https://github.com/Mahdi171/Unlinkable_PCS)
 
-- **Groth-Sahai Proofs**: An efficient implementation for the seminal work of Jens Groth and Amit Sahai proof system. [Link](https://github.com/Mahdi171/Groth-Sahai)
+- **Groth-Sahai Proofs**: An efficient implementation for the seminal work of Jens Groth and Amit Sahai. [Link](https://github.com/Mahdi171/Groth-Sahai)
 
 - **Nirvana Payment Python**: A distributed implementation of an anonymous and reusable payment guarantee system. [Link](https://github.com/Mahdi171/CD-ABACE)
 
@@ -70,5 +70,5 @@ A more updated list of my publications can be found in my [Google Scholar](https
 
 Services
 ======
-*  I have served on the **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
+*  I have served on the **CANS-2024** **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
 

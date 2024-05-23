@@ -12,6 +12,7 @@ I am a last year PhD student at [COSIC](https://www.esat.kuleuven.be/cosic/), [K
 
 During my Ph.D., I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
+These days, I am primarily focused on Accountable Threshold Signatures and transparent Zero-Knowledge proofs. Feel free to reach out to me with any questions or for collaboration opportunities.
 
 News
 ------
@@ -21,10 +22,10 @@ News
 
 Upcoming Events
 ------
-- <b> 2024-05-24 </b> To attend EuroCrypt'24 in Zurich. 
-- <b> 2024-06-03 </b> Visiting ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
-- <b> 2024-07-08 </b> Public Defense. 
-- <b> 2024-07-15 </b> To attend PETS'24. 
+- <b> 2024-05-[24-30] </b> To attend EuroCrypt'24 in Zurich. 
+- <b> 2024-06-[03-07] </b> Visiting ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
+- <b> 2024-07-08 (16:00 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8)
+- <b> 2024-07-[15-20] </b> To attend PETS'24. 
 
 Extra
 ------
