@@ -23,9 +23,10 @@ News
 Upcoming Events
 ------
 - <b> 2024-05-[24-30] </b> To attend EuroCrypt'24 in Zurich. 
-- <b> 2024-06-[03-07] </b> Visiting ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
+- <b> 2024-06-[03-07] </b> To visit ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
 - <b> 2024-07-08 (16:00 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8)
 - <b> 2024-07-[15-20] </b> To attend PETS'24. 
+
 
 Extra
 ------
