@@ -1,7 +1,7 @@
 ---
 title: 'Gorth Sahai Proofs: Zero to Hero!'
 date: 2023-06-08
-permalink: /posts/2012/08/blog-post-4/
+permalink: /posts/2023/06/blog-post-1/
 tags:
   - cool posts
   - category1
