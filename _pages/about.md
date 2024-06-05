@@ -29,11 +29,13 @@ Upcoming Events
 
 Past Events
 ------
-- <b> 2024-05-[24-30] </b> Eurocrypt 2024 in Zurich. 
-- <b> 2024-06-[03-07] </b> Financial Crypto 2024 in Curacao.
-- <b> 2023-12-[12-16] </b> Visited Sherman in Hong Kong.
-- <b> 2023-12-[04-08] </b> Asiacrypt 2024 in Guangzhou.
-- <b> 2023-10-[01-06] </b> Mysten offsite in Paris.
+- <b> 2024-05-[24:30] </b> Eurocrypt 2024 in Zurich. 
+- <b> 2024-06-[03:07] </b> Financial Crypto 2024 in Curacao.
+- <b> 2023-12-[12:16] </b> Visited Sherman in Hong Kong.
+- <b> 2023-12-[04:08] </b> Asiacrypt 2024 in Guangzhou.
+- <b> 2023-10-[01:06] </b> Mysten offsite in Paris.
+- <b> 2023-04-[23:27] </b> Eurocrypt 2023 in Lyon.
+- <b> 2023-[02-26:04-01] </b> Visiting ZK Labs in Edinburgh.
 
 
 Extra
