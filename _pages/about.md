@@ -16,16 +16,24 @@ These days, I am primarily focused on Accountable Threshold Signatures and trans
 
 News
 ------
+- <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch/#group-picture), ETH Zurich.
 - <b> 2024-05-15 </b> Successfully passed my private Defense. 
 - <b> 2024-05-01 </b> The ul-PCS paper got accepted to PETS'24.
 
 
 Upcoming Events
 ------
-- <b> 2024-05-[24-30] </b> To attend EuroCrypt'24 in Zurich. 
 - <b> 2024-06-[03-07] </b> To visit ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
 - <b> 2024-07-08 (16:00 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8)
 - <b> 2024-07-[15-20] </b> To attend PETS'24. 
+
+Past Events
+------
+- <b> 2024-05-[24-30] </b> Eurocrypt 2024 in Zurich. 
+- <b> 2024-06-[03-07] </b> Financial Crypto 2024 in Curacao.
+- <b> 2023-12-[12-16] </b> Visited Sherman in Hong Kong.
+- <b> 2023-12-[04-08] </b> Asiacrypt 2024 in Guangzhou.
+- <b> 2023-10-[01-06] </b> Mysten offsite in Paris.
 
 
 Extra
