@@ -35,8 +35,11 @@ Past Events
 - <b> 2023-12-[04:08] </b> Asiacrypt 2024 in Guangzhou.
 - <b> 2023-10-[01:06] </b> Mysten offsite in Paris.
 - <b> 2023-04-[23:27] </b> Eurocrypt 2023 in Lyon.
-- <b> 2023-[02-26:04-01] </b> Visiting ZK Labs in Edinburgh.
-
+- <b> 2023-[02-26:04-01] </b> Visited ZK Labs in Edinburgh.
+- <b> 2022-09-[12-16] </b> Crypt@b-it 2022, Bonn, Germany.
+- <b> 2022-[05-30:06-03] </b> Eurocrypt 2022, Trondheim, Norway.
+- <b> 2022-04-[13:15] </b> RWC 2022, Amsterdam, Netherlands.
+- <b> 2021-10-[17:21] </b> Eurocrypt 2021 in Zagreb.
 
 Extra
 ------
