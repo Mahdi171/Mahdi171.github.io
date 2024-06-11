@@ -16,26 +16,28 @@ These days, I am primarily focused on Accountable Threshold Signatures and trans
 
 News
 ------
-- <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch/#group-picture), ETH Zurich.
+- <b> 2024-06-17 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [SBC'24](https://www.sbc-conference.com/), Columbia University.
+- <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch), ETH Zurich.
 - <b> 2024-05-15 </b> Successfully passed my private Defense. 
 - <b> 2024-05-01 </b> The ul-PCS paper got accepted to PETS'24.
 
 
 Upcoming Events
 ------
-- <b> 2024-06-[03-07] </b> To visit ETH Zurich, hosted by [Prof. Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
-- <b> 2024-07-08 (16:00 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8)
-- <b> 2024-07-[15-20] </b> To attend PETS'24. 
+- <b> 2024-07-09 (17:15 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8). Add to your [Google Calender](https://calendar.app.google/jwqCUjaQrHN8btEV9).
+- <b> 2024-07-[8-11] </b> To attend EthCC'24 in Brussels.
+- <b> 2024-07-[15-20] </b> To attend PETS'24 and present [ul-PCS](https://eprint.iacr.org/2023/1070.pdf). 
 
 Past Events
 ------
+- <b> 2024-06-[03-07] </b> Visited ETH Zurich, hosted by [Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
 - <b> 2024-05-[24:30] </b> Eurocrypt 2024 in Zurich. 
 - <b> 2024-06-[03:07] </b> Financial Crypto 2024 in Curacao.
-- <b> 2023-12-[12:16] </b> Visited Sherman in Hong Kong.
-- <b> 2023-12-[04:08] </b> Asiacrypt 2024 in Guangzhou.
+- <b> 2023-12-[12:16] </b> Visited CUHK, hosted by [Sherman S. M. Chow](https://staff.ie.cuhk.edu.hk/~smchow/index.htm) in Hong Kong.
+- <b> 2023-12-[04:08] </b> Asiacrypt 2023 in Guangzhou.
 - <b> 2023-10-[01:06] </b> Mysten offsite in Paris.
 - <b> 2023-04-[23:27] </b> Eurocrypt 2023 in Lyon.
-- <b> 2023-[02-26:04-01] </b> Visited ZK Labs in Edinburgh.
+- <b> 2023-[02-26:04-01] </b> Visited ZK Labs in Edinburgh, hosted by [Markulf Kohlweiss](https://homepages.inf.ed.ac.uk/mkohlwei/).
 - <b> 2022-09-[12-16] </b> Crypt@b-it 2022, Bonn, Germany.
 - <b> 2022-[05-30:06-03] </b> Eurocrypt 2022, Trondheim, Norway.
 - <b> 2022-04-[13:15] </b> RWC 2022, Amsterdam, Netherlands.
