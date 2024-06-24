@@ -8,30 +8,34 @@ redirect_from:
   - /about.html
 ---
 
-I am a last year PhD student at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) under the supervision of [Prof. Bart Preenel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/).
+I am a PhD candidate, currently a PostDoc (partial) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](https://cosicdatabase.esat.kuleuven.be/backend/publications/files/these/514).
 
 During my Ph.D., I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
-These days, I am primarily focused on Accountable Threshold Signatures and transparent Zero-Knowledge proofs. Feel free to reach out to me with any questions or for collaboration opportunities.
+These days, I am primarily focused on Accountable Threshold Signatures and Zero-Knowledge proofs. Feel free to reach out to me with any questions or for collaboration opportunities.
 
 News
 ------
+
+- <b> 2024-07-09 </b> Defended my PhD thesis.
 - <b> 2024-06-17 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [SBC'24](https://www.sbc-conference.com/), Columbia University.
 - <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch), ETH Zurich.
-- <b> 2024-05-15 </b> Successfully passed my private Defense. 
-- <b> 2024-05-01 </b> The ul-PCS paper got accepted to PETS'24.
+ 
 
 
 Upcoming Events
 ------
-- <b> 2024-07-09 (17:15 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8). Add to your [Google Calender](https://calendar.app.google/jwqCUjaQrHN8btEV9).
-- <b> 2024-07-[8-11] </b> To attend EthCC'24 in Brussels.
+
 - <b> 2024-07-[15-20] </b> To attend PETS'24 and present [ul-PCS](https://eprint.iacr.org/2023/1070.pdf). 
+- <b> 2024-08-[7-9] </b> To attend [SBC'24](https://www.sbc-conference.com/).
 
 Past Events
 ------
+- <b> 2024-07-[8-11] </b> Attended EthCC'24 in Brussels.
+- <b> 2024-07-[1-4] </b> Attended [COSIC Course](https://www.esat.kuleuven.be/cosic/events/cosic-course/) in Leuven.
 - <b> 2024-06-[03-07] </b> Visited ETH Zurich, hosted by [Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
 - <b> 2024-05-[24:30] </b> Eurocrypt 2024 in Zurich. 
+- <b> 2024-05-15 </b> Successfully passed my private Defense.
 - <b> 2024-06-[03:07] </b> Financial Crypto 2024 in Curacao.
 - <b> 2023-12-[12:16] </b> Visited CUHK, hosted by [Sherman S. M. Chow](https://staff.ie.cuhk.edu.hk/~smchow/index.htm) in Hong Kong.
 - <b> 2023-12-[04:08] </b> Asiacrypt 2023 in Guangzhou.
