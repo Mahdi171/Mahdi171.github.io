@@ -24,9 +24,11 @@ News
 
 Upcoming Events
 ------
+- <b> 2024-07-[1-4] </b> To attend [COSIC Course](https://www.esat.kuleuven.be/cosic/events/cosic-course/) in Leuven.
 - <b> 2024-07-09 (17:15 CET) </b> Public Defense. (If you are interested in joining, you can email me.) [Location](https://maps.app.goo.gl/ydhZNmZhVyBmJzfy8). Add to your [Google Calender](https://calendar.app.google/jwqCUjaQrHN8btEV9).
 - <b> 2024-07-[8-11] </b> To attend EthCC'24 in Brussels.
 - <b> 2024-07-[15-20] </b> To attend PETS'24 and present [ul-PCS](https://eprint.iacr.org/2023/1070.pdf). 
+- <b> 2024-08-[7-9] </b> To attend [SBC'24](https://www.sbc-conference.com/).
 
 Past Events
 ------
