@@ -8,16 +8,17 @@ redirect_from:
   - /about.html
 ---
 
-I am a PhD candidate, currently a PostDoc (partial) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](https://cosicdatabase.esat.kuleuven.be/backend/publications/files/these/514).
+I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](https://cosicdatabase.esat.kuleuven.be/backend/publications/files/these/514).
 
-During my Ph.D., I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
+During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
-These days, I am primarily focused on Accountable Threshold Signatures and Zero-Knowledge proofs. Feel free to reach out to me with any questions or for collaboration opportunities.
+These days, I am primarily focused on Accountable Threshold Signatures, Traceable Secret Sharing and more efficient decentralized zk-Rollups. Feel free to reach out to me with any questions or for collaboration opportunities.
 
 News
 ------
 
-- <b> 2024-07-09 </b> Defended my PhD thesis.
+- <b> 2024-07-18 </b> Presented the [ul-PCS](https://petsymposium.org/popets/2024/popets-2024-0115.pdf) paper at PETS'24. Link to my [presentation](https://www.youtube.com/live/ZNl_sOXnr7o?si=bnQfd3tEOEic83mu&t=19218).
+- <b> 2024-07-09 </b> Defended my PhD thesis. Link to [slides](talks/2024-07-09)
 - <b> 2024-06-17 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [SBC'24](https://www.sbc-conference.com/), Columbia University.
 - <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch), ETH Zurich.
  
@@ -25,12 +26,12 @@ News
 
 Upcoming Events
 ------
-
-- <b> 2024-07-[15-20] </b> To attend PETS'24 and present [ul-PCS](https://eprint.iacr.org/2023/1070.pdf). 
-- <b> 2024-08-[7-9] </b> To attend [SBC'24](https://www.sbc-conference.com/).
+- <b> 2024-09-[2-6] </b> To attend [Foundations and Applications of Zero-Knowledge Proofs](https://www.icms.org.uk/ZeroKnowledgeProofs), Edinburgh, UK.
 
 Past Events
 ------
+- <b> 2024-08-[5-9] </b> Attended [SBC'24](https://www.sbc-conference.com/), New York, US. Affiliated events: Starkware Summit and Bass.
+- <b> 2024-07-[15-20] </b> Attended PETS'24 in Bristol. 
 - <b> 2024-07-[8-11] </b> Attended EthCC'24 in Brussels.
 - <b> 2024-07-[1-4] </b> Attended [COSIC Course](https://www.esat.kuleuven.be/cosic/events/cosic-course/) in Leuven.
 - <b> 2024-06-[03-07] </b> Visited ETH Zurich, hosted by [Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
