@@ -12,24 +12,26 @@ I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cos
 
 During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
-These days, I am primarily focused on Accountable Threshold Signatures, Traceable Secret Sharing and more efficient decentralized zk-Rollups. Feel free to reach out to me with any questions or for collaboration opportunities.
+These days, I am primarily focused on Accountable Threshold Signatures, Traceable Secret Sharing and more efficient decentralized zk proofs verification layers.
+Feel free to reach out to me with any questions or for collaboration opportunities.
 
 News
 ------
-
+- <b> 2024-12-23 </b> Awarded a Global Seed Fund grant for project "Towards a Quantum Safe Digital Future", in collaboration with Prof. Bart Preneel (KUL) and Prof. [Sushmita Ruj](https://research.unsw.edu.au/people/dr-sushmita-ruj-0) (UNSW Sydney).
+- <b> 2024-08-21 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [ACM CCS'24](https://www.sigsac.org/ccs/CCS2024/call-for/call-for-papers.html), Salt Lake City, USA.
+- <b> 2024-08-08 </b> Gave a funny talk on the human food chain and the cryptography chain analogy as a lightning talk at SBC'24. [Link](https://www.youtube.com/live/lBIwq0nEtc4?si=XzTJMDb-g4XG0WG8&t=13354)
 - <b> 2024-07-18 </b> Presented the [ul-PCS](https://petsymposium.org/popets/2024/popets-2024-0115.pdf) paper at PETS'24. Link to my [presentation](https://www.youtube.com/live/ZNl_sOXnr7o?si=bnQfd3tEOEic83mu&t=19218).
-- <b> 2024-07-09 </b> Defended my PhD thesis. Link to [slides](talks/2024-07-09)
-- <b> 2024-06-17 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [SBC'24](https://www.sbc-conference.com/), Columbia University.
-- <b> 2024-06-04 </b> Presented TSPS: Done and ongoing Projects at [Foundations of Cryptography](https://foc.ethz.ch), ETH Zurich.
- 
-
+- <b> 2024-07-09 </b> Defended my PhD thesis. Link to [slides](talks/2024-07-09).
 
 Upcoming Events
 ------
-- <b> 2024-09-[2-6] </b> To attend [Foundations and Applications of Zero-Knowledge Proofs](https://www.icms.org.uk/ZeroKnowledgeProofs), Edinburgh, UK.
+
 
 Past Events
 ------
+- <b> 2024-11-14 </b> [Cybersecurity Industry Day](https://cybersecurity-bites.be/industry-day-2024/), Mechelen, Belgium. To give a talk in "Blockchain for all: beyond the currencies" breakout, [Link to my slides](talks/2024-11-14). 
+- <b> 2024-10-[7-9] </b> Attended [zkSummit 12](https://www.zksummit.com/) in Lisbon.
+- <b> 2024-09-[2-6] </b> Attended [Foundations and Applications of Zero-Knowledge Proofs](https://www.icms.org.uk/ZeroKnowledgeProofs), Edinburgh, UK.
 - <b> 2024-08-[5-9] </b> Attended [SBC'24](https://www.sbc-conference.com/), New York, US. Affiliated events: Starkware Summit and Bass.
 - <b> 2024-07-[15-20] </b> Attended PETS'24 in Bristol. 
 - <b> 2024-07-[8-11] </b> Attended EthCC'24 in Brussels.
