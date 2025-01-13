@@ -71,5 +71,28 @@ A more updated list of my publications can be found in my [Google Scholar](https
 
 Services
 ======
-*  I have served on the **AC-2024**, **CANS-2024**, **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
+* PC member: [PrivCrypt 2025](https://privcryptworkshop.github.io/). 
+*  I have served on the **PETS-2025** **AC-2024**, **CANS-2024**, **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
 
+Past Events
+======
+- <b> 2024-11-14 </b> [Cybersecurity Industry Day](https://cybersecurity-bites.be/industry-day-2024/), Mechelen, Belgium. To give a talk in "Blockchain for all: beyond the currencies" breakout, [Link to my slides](talks/2024-11-14). 
+- <b> 2024-10-[7-9] </b> Attended [zkSummit 12](https://www.zksummit.com/) in Lisbon.
+- <b> 2024-09-[2-6] </b> Attended [Foundations and Applications of Zero-Knowledge Proofs](https://www.icms.org.uk/ZeroKnowledgeProofs), Edinburgh, UK.
+- <b> 2024-08-[5-9] </b> Attended [SBC'24](https://www.sbc-conference.com/), New York, US. Affiliated events: Starkware Summit and Bass.
+- <b> 2024-07-[15-20] </b> Attended PETS'24 in Bristol. 
+- <b> 2024-07-[8-11] </b> Attended EthCC'24 in Brussels.
+- <b> 2024-07-[1-4] </b> Attended [COSIC Course](https://www.esat.kuleuven.be/cosic/events/cosic-course/) in Leuven.
+- <b> 2024-06-[03-07] </b> Visited ETH Zurich, hosted by [Dennis Hofheinz](https://people.inf.ethz.ch/dhofheinz/).
+- <b> 2024-05-[24:30] </b> Eurocrypt 2024 in Zurich. 
+- <b> 2024-05-15 </b> Successfully passed my private Defense.
+- <b> 2024-06-[03:07] </b> Financial Crypto 2024 in Curacao.
+- <b> 2023-12-[12:16] </b> Visited CUHK, hosted by [Sherman S. M. Chow](https://staff.ie.cuhk.edu.hk/~smchow/index.htm) in Hong Kong.
+- <b> 2023-12-[04:08] </b> Asiacrypt 2023 in Guangzhou.
+- <b> 2023-10-[01:06] </b> Mysten offsite in Paris.
+- <b> 2023-04-[23:27] </b> Eurocrypt 2023 in Lyon.
+- <b> 2023-[02-26:04-01] </b> Visited ZK Labs in Edinburgh, hosted by [Markulf Kohlweiss](https://homepages.inf.ed.ac.uk/mkohlwei/).
+- <b> 2022-09-[12-16] </b> Crypt@b-it 2022, Bonn, Germany.
+- <b> 2022-[05-30:06-03] </b> Eurocrypt 2022, Trondheim, Norway.
+- <b> 2022-04-[13:15] </b> RWC 2022, Amsterdam, Netherlands.
+- <b> 2021-10-[17:21] </b> Eurocrypt 2021 in Zagreb.
