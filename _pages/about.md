@@ -17,18 +17,26 @@ Feel free to reach out to me with any questions or for collaboration opportuniti
 
 News
 ------
+- <b> 2025-02-21 </b> New eprint is out. [Traceable Verifiable Secret Sharing and Applications](publication/2025-02-21).
+- <b> 2025-01-24 </b> [zkLogin](https://arxiv.org/pdf/2401.11735) got accepted to [RWC'25](https://rwc.iacr.org/2025/), Sofia, Bulgaria.
 - <b> 2025-01-13 </b> New eprint is out. [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13).
 - <b> 2024-12-23 </b> Awarded a Global Seed Fund grant for project "Towards a Quantum Safe Digital Future", in collaboration with Prof. Bart Preneel (KUL) and Prof. [Sushmita Ruj](https://research.unsw.edu.au/people/dr-sushmita-ruj-0) (UNSW Sydney).
-- <b> 2024-08-21 </b> [zkLogin paper](https://arxiv.org/pdf/2401.11735) got accepted to [ACM CCS'24](https://www.sigsac.org/ccs/CCS2024/call-for/call-for-papers.html), Salt Lake City, USA.
 
 Upcoming Events
 ------
+- <b> 2025-03-17 </b> To present zkLogin at [o1labs seminars](https://o1labs.notion.site/crypto-reading-group), online.
 - <b> 2025-03-[23-25] </b> To attend [zkProof 7](https://zkproof.org/events/zkproof-7-sofia/) in Sofia, Bulgaria.
 - <b> 2025-03-[25-28] </b> To attend [RWC 2025](https://rwc.iacr.org/2025/) in Sofia, Bulgaria.
 
 Past Events
 ------
 Pls refer to [CV](cv/).
+
+
+Students
+------
+- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor.
+- Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
 
 Extra
 ------

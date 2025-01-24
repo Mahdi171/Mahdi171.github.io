@@ -71,7 +71,7 @@ A more updated list of my publications can be found in my [Google Scholar](https
 
 Services
 ======
-* PC member: [PrivCrypt 2025](https://privcryptworkshop.github.io/). 
+* PC member: [PrivCrypt 2025](https://privcryptworkshop.github.io/) and [Information Security Conference (ISC 2025)](https://isc25.skku.edu/). 
 *  I have served on the **PETS-2025** **AC-2024**, **CANS-2024**, **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
 
 Past Events
