@@ -24,9 +24,7 @@ News
 
 Upcoming Events
 ------
-- <b> 2025-03-17 </b> To present zkLogin at [o1labs seminars](https://o1labs.notion.site/crypto-reading-group), online.
-- <b> 2025-03-[23-25] </b> To attend [zkProof 7](https://zkproof.org/events/zkproof-7-sofia/) in Sofia, Bulgaria.
-- <b> 2025-03-[25-28] </b> To attend [RWC 2025](https://rwc.iacr.org/2025/) in Sofia, Bulgaria.
+- <b> 2025-05-[02-09] </b> To attend [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
 
 Past Events
 ------
