@@ -33,6 +33,7 @@ Pls refer to [CV](cv/).
 
 Students
 ------
+- Hossein Moghaddas (Cosic, KU Leuven), PhD daily supervisor.
 - Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor.
 - Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
 
