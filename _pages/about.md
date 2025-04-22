@@ -24,7 +24,7 @@ News
 
 Upcoming Events
 ------
-- <b> 2025-05-[02-09] </b> To attend [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
+
 
 Past Events
 ------
