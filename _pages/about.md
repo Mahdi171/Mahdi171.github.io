@@ -24,7 +24,9 @@ News
 
 Upcoming Events
 ------
-- <b> 2025-05-[02-09] </b> To attend [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
+
+- <b> 2025-05-[18-23] </b> To visit [Prof. Jae Hong Seo](https://sites.google.com/site/jhsbhs/) at Hanyang University in Seoul, South Korea.
+- <b> 2025-[05-24-06-21] </b> To visit [Prof. Sushmita Ruj](https://research.unsw.edu.au/people/associate-professor-sushmita-ruj) at UNSW in Sydney, Australia.
 
 Past Events
 ------
