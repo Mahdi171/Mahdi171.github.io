@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](https://cosicdatabase.esat.kuleuven.be/backend/publications/files/these/514).
+I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](../files/thesis_final_version.pdf).
 
 During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
