@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/). Link to my [Thesis](../files/thesis_final_version.pdf).
+I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/) and co-founder and Director at [Soundness labs](soundness.xyz). Link to my [Thesis](../files/thesis_final_version.pdf).
 
 During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
@@ -17,6 +17,8 @@ Feel free to reach out to me with any questions or for collaboration opportuniti
 
 News
 ------
+- <b> 2025-09-02 </b> [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13) got accepted to CiC.
+- <b> 2025-06-18 </b> Awarded a Sui Foundation Academic Research grant.
 - <b> 2025-02-21 </b> New eprint is out. [Traceable Verifiable Secret Sharing and Applications](publication/2025-02-21).
 - <b> 2025-01-24 </b> [zkLogin](https://arxiv.org/pdf/2401.11735) got accepted to [RWC'25](https://rwc.iacr.org/2025/), Sofia, Bulgaria.
 - <b> 2025-01-13 </b> New eprint is out. [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13).
@@ -24,6 +26,7 @@ News
 
 Upcoming Events
 ------
+- <b> 2025-09-[11-12] </b> To attend [ENISA and PQCSA](https://www.esat.kuleuven.be/cosic/events/standardization-pqc-fundamentals/) in Athens, Greece.
 
 
 Past Events
@@ -31,11 +34,15 @@ Past Events
 Pls refer to [CV](cv/).
 
 
-Students
+Current Students
 ------
-- Hossein Moghaddas (Cosic, KU Leuven), PhD daily supervisor.
-- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor.
+- Hossein Moghaddas (Cosic, KU Leuven), PhD co-supervisor.
 - Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
+
+Past Students
+------
+- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor.
+- Raphaël Deknop (KU Leuven), Intern.
 
 Extra
 ------

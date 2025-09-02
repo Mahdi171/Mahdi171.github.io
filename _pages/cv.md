@@ -78,9 +78,9 @@ Past Events
 ======
 - <b> 2025-[05-24-06-21] </b> Visited [Prof. Sushmita Ruj](https://research.unsw.edu.au/people/associate-professor-sushmita-ruj) at UNSW in Sydney, Australia.
 - <b> 2025-05-[18-23] </b> Visited [Prof. Jae Hong Seo](https://sites.google.com/site/jhsbhs/) at Hanyang University in Seoul, South Korea.
-- <b> 2025-05-[02-09] </b> To attend [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
-- <b> 2025-[04-30-05-2] </b> To attend [Sui Basecamp](https://sui.io/basecamp) in Dubai, UAE. 
-- <b> 2025-04-28 </b> To attend [EthBelgium](https://lu.ma/w71w962w) and present zkApps in Leuven, Belgium.
+- <b> 2025-05-[02-09] </b> Attended [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
+- <b> 2025-[04-30-05-2] </b> Attended [Sui Basecamp](https://sui.io/basecamp) in Dubai, UAE. 
+- <b> 2025-04-28 </b> Attended [EthBelgium](https://lu.ma/w71w962w) and present zkApps in Leuven, Belgium.
 - <b> 2025-03-[25-28] </b> Attended [RWC 2025](https://rwc.iacr.org/2025/) in Sofia, Bulgaria.
 - <b> 2025-03-[23-25] </b> Attended [zkProof 7](https://zkproof.org/events/zkproof-7-sofia/) in Sofia, Bulgaria.
 - <b> 2025-03-17 </b> Presented zkLogin at [o1labs seminars](https://o1labs.notion.site/crypto-reading-group), online.
