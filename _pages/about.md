@@ -17,7 +17,7 @@ Feel free to reach out to me with any questions or for collaboration opportuniti
 
 News
 ------
-- <b> 2025-09-02 </b> [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13) got accepted to CiC.
+- <b> 2025-09-02 </b> [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13) got accepted to [IACR CiC, Volume 2, Issue 3](https://cic.iacr.org/i/2/3).
 - <b> 2025-06-18 </b> Awarded a Sui Foundation Academic Research grant.
 - <b> 2025-02-21 </b> New eprint is out. [Traceable Verifiable Secret Sharing and Applications](publication/2025-02-21).
 - <b> 2025-01-24 </b> [zkLogin](https://arxiv.org/pdf/2401.11735) got accepted to [RWC'25](https://rwc.iacr.org/2025/), Sofia, Bulgaria.
@@ -26,7 +26,6 @@ News
 
 Upcoming Events
 ------
-- <b> 2025-09-[11-12] </b> To attend [ENISA and PQCSA](https://www.esat.kuleuven.be/cosic/events/standardization-pqc-fundamentals/) in Athens, Greece.
 
 
 Past Events
@@ -36,13 +35,14 @@ Pls refer to [CV](cv/).
 
 Current Students
 ------
-- Hossein Moghaddas (Cosic, KU Leuven), PhD co-supervisor.
+- Hossein Moghaddas (COSIC, KU Leuven), PhD co-supervisor.
 - Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
+- Hossein Hafezi Moghaddas (COSIC, KU Leuven), Free researcher.
 
 Past Students
 ------
-- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor.
-- Raphaël Deknop (KU Leuven), Intern.
+- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor -> RUB, Germany
+- Raphaël Deknop (KU Leuven), Intern -> Master in Physics (KU Leuven)
 
 Extra
 ------

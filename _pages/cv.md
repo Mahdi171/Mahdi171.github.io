@@ -76,6 +76,7 @@ Services
 
 Past Events
 ======
+- <b> 2025-09-[11-12] </b> Attended [ENISA and PQCSA](https://www.esat.kuleuven.be/cosic/events/standardization-pqc-fundamentals/) in Athens, Greece.
 - <b> 2025-[05-24-06-21] </b> Visited [Prof. Sushmita Ruj](https://research.unsw.edu.au/people/associate-professor-sushmita-ruj) at UNSW in Sydney, Australia.
 - <b> 2025-05-[18-23] </b> Visited [Prof. Jae Hong Seo](https://sites.google.com/site/jhsbhs/) at Hanyang University in Seoul, South Korea.
 - <b> 2025-05-[02-09] </b> Attended [EC 2025](https://eurocrypt.iacr.org/2025/) in Madrid, Spain.
