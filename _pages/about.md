@@ -26,7 +26,6 @@ News
 
 Upcoming Events
 ------
-- <b> 2025-09-[11-12] </b> To attend [ENISA and PQCSA](https://www.esat.kuleuven.be/cosic/events/standardization-pqc-fundamentals/) in Athens, Greece.
 
 
 Past Events
@@ -38,6 +37,7 @@ Current Students
 ------
 - Hossein Moghaddas (Cosic, KU Leuven), PhD co-supervisor.
 - Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
+- Hossein Hafezi Moghaddas (Cosic, KU Leuven), Free researcher.
 
 Past Students
 ------
