@@ -8,9 +8,9 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/) and co-founder and Director at [Soundness labs](soundness.xyz). Link to my [Thesis](../files/thesis_final_version.pdf).
+I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/) and co-founder and Director at [Soundness labs](soundness.xyz).
 
-During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space. I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
+During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space (Link to my [Thesis](../files/thesis_final_version.pdf)). I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
 These days, I am primarily focused on Accountable Threshold Signatures, Traceable Secret Sharing and more efficient decentralized zk proofs verification layers.
 Feel free to reach out to me with any questions or for collaboration opportunities.
@@ -36,13 +36,13 @@ Pls refer to [CV](cv/).
 Current Students
 ------
 - Hossein Moghaddas (COSIC, KU Leuven), PhD co-supervisor.
-- Theresa Wakonig (ETH Zurich), master thesis co-supervisor.
 - Hossein Hafezi Moghaddas (COSIC, KU Leuven), Free researcher.
 
 Past Students
 ------
-- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor -> RUB, Germany
+- Kiran Deep Ghosh (ISI Kolkata), master thesis supervisor -> PhD at RUB, Germany
 - Raphaël Deknop (KU Leuven), Intern -> Master in Physics (KU Leuven)
+- Theresa Wakonig (ETH Zurich), master thesis co-supervisor -> ETH Zurich
 
 Extra
 ------
