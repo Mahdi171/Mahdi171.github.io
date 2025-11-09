@@ -17,16 +17,13 @@ Feel free to reach out to me with any questions or for collaboration opportuniti
 
 News
 ------
+- <b> 2025-11-10 </b> I will be serving as a PC member at [ACM CCS 2026](https://www.sigsac.org/ccs/CCS2026/), Applied crypto.
 - <b> 2025-09-02 </b> [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13) got accepted to [IACR CiC, Volume 2, Issue 3](https://cic.iacr.org/i/2/3).
 - <b> 2025-06-18 </b> Awarded a Sui Foundation Academic Research grant.
-- <b> 2025-02-21 </b> New eprint is out. [Traceable Verifiable Secret Sharing and Applications](publication/2025-02-21).
-- <b> 2025-01-24 </b> [zkLogin](https://arxiv.org/pdf/2401.11735) got accepted to [RWC'25](https://rwc.iacr.org/2025/), Sofia, Bulgaria.
-- <b> 2025-01-13 </b> New eprint is out. [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13).
-- <b> 2024-12-23 </b> Awarded a Global Seed Fund grant for project "Towards a Quantum Safe Digital Future", in collaboration with Prof. Bart Preneel (KUL) and Prof. [Sushmita Ruj](https://research.unsw.edu.au/people/dr-sushmita-ruj-0) (UNSW Sydney).
 
 Upcoming Events
 ------
-
+- <b> 2025-11-13 </b> To attend and give a talk at [Cybersecurity Industry Day](https://cybersecurity-industry-day.be/#BO-COSIC), Mechelen, Belgium.
 
 Past Events
 ------
