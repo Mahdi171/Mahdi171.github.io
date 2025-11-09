@@ -38,16 +38,19 @@ Research Visits
 ======
 I have had the chance to visit multiple research groups such as:
 
+- [UNSW, Sydney](https://www.unsw.edu.au/) hosted by [Prof. Sushmita Ruj](https://www.unsw.edu.au/staff/sushmita-ruj), 2025. 
+- [Hanyang University](https://www.hanyang.ac.kr/web/eng) hosted by [Prof. Jae Hong Seo](https://sites.google.com/site/jhsbhs/), 2025. 
 - [Foundations of Cryptography Group](https://foc.ethz.ch/#group-picture), [ETH Zurich](https://ethz.ch/en.html), hosted by [Prof. Dennis Hofheinz](https://inf.ethz.ch/people/person-detail.MjY4MTEw.TGlzdC8zMDQsLTg3NDc3NjI0MQ==.html), 2024.
 - [Department of Information Engineering](https://www.ie.cuhk.edu.hk/), [Chinese University of Hong Kong (CUHK)](https://www.cuhk.edu.hk/english/index.html), hosted by [Prof. Sherman S. M. Chow](https://staff.ie.cuhk.edu.hk/~smchow/index.htm), 2023.
 - [ZK-Lab](https://zk-lab.org/), [University of Edinburgh](https://www.ed.ac.uk/), hosted by [Prof. Markulf Kohlweiss](https://homepages.inf.ed.ac.uk/mkohlwei/), 2023. 
 - [Computer Science Institute](https://www.mff.cuni.cz/en/iuuk), [Charles University in Prague](https://cuni.cz/UKEN-1.html), hosted by [Prof. Pavel Hubáček](https://iuuk.mff.cuni.cz/~hubacek/), 2019.
 
-Skills
+Programming Skills
 ======
 - Python
 - Rust
 - Solidity
+- Move
 
 Open Source Projects
 ======
@@ -71,7 +74,7 @@ A more updated list of my publications can be found in my [Google Scholar](https
 
 Services
 ======
-* PC member: [PrivCrypt 2025](https://privcryptworkshop.github.io/) and [Information Security Conference (ISC 2025)](https://isc25.skku.edu/). 
+* PC member: [ACM CCS 2026](https://www.sigsac.org/ccs/CCS2026/), [PrivCrypt 2025](https://privcryptworkshop.github.io/) and [Information Security Conference (ISC 2025)](https://isc25.skku.edu/). 
 *  I have served on the **PETS-2025** **AC-2024**, **CANS-2024**, **CRYPTO-2024**, **PKC-2024**, **IEEE TDSC-2024**, **LatinCrypt-2023**, **ACM CCS-2023**, **IEEE TDSC-2023**, **IEEE TIFS-2022**, **EC-2022**, **AC-2020**, **TCC-2019**, and **ISCISC-2018** as reviewer.
 
 Past Events
