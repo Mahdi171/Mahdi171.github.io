@@ -8,7 +8,7 @@ redirect_from:
   - /about.html
 ---
 
-I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/) and co-founder and Director at [Soundness labs](soundness.xyz).
+I am currently a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/) and co-founder and Director at [Soundness labs](https://soundness.xyz).
 
 During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space (Link to my [Thesis](../files/thesis_final_version.pdf)). I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
@@ -17,12 +17,11 @@ Feel free to reach out to me with any questions or for collaboration opportuniti
 
 News
 ------
+- <b> 2025-11-24 </b> PQ-chain paper conditionally accepted to [FC'26](https://fc26.ifca.ai/).
+- <b> 2025-11-15 </b> Build a tool to [visualize recent results on proximity gap](https://proximity.sedaghat.xyz/).
+- <b> 2025-11-10 </b> I will be serving as a PC member at [ACM CCS 2026](https://www.sigsac.org/ccs/CCS2026/), Applied crypto.
 - <b> 2025-09-02 </b> [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13) got accepted to [IACR CiC, Volume 2, Issue 3](https://cic.iacr.org/i/2/3).
 - <b> 2025-06-18 </b> Awarded a Sui Foundation Academic Research grant.
-- <b> 2025-02-21 </b> New eprint is out. [Traceable Verifiable Secret Sharing and Applications](publication/2025-02-21).
-- <b> 2025-01-24 </b> [zkLogin](https://arxiv.org/pdf/2401.11735) got accepted to [RWC'25](https://rwc.iacr.org/2025/), Sofia, Bulgaria.
-- <b> 2025-01-13 </b> New eprint is out. [Keyed-Verification Anonymous Credentials with Highly Efficient Partial Disclosure](publication/2025-01-13).
-- <b> 2024-12-23 </b> Awarded a Global Seed Fund grant for project "Towards a Quantum Safe Digital Future", in collaboration with Prof. Bart Preneel (KUL) and Prof. [Sushmita Ruj](https://research.unsw.edu.au/people/dr-sushmita-ruj-0) (UNSW Sydney).
 
 Upcoming Events
 ------
@@ -36,7 +35,7 @@ Pls refer to [CV](cv/).
 Current Students
 ------
 - Hossein Moghaddas (COSIC, KU Leuven), PhD co-supervisor.
-- Hossein Hafezi Moghaddas (COSIC, KU Leuven), Free researcher.
+- Hossein Hafezi (New York University), Visitor.
 
 Past Students
 ------
