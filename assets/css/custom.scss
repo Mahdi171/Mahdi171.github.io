@@ -1,0 +1,231 @@
+---
+---
+
+// ============================================================
+// CUSTOM STYLES - Additive improvements only
+// ============================================================
+
+// Import better fonts
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+// Variables
+$primary: #2563eb;
+$primary-dark: #1d4ed8;
+$accent: #8b5cf6;
+$text-dark: #1e293b;
+$text-muted: #64748b;
+$border: #e2e8f0;
+$bg-light: #f8fafc;
+$radius: 10px;
+$shadow: 0 4px 20px rgba(0,0,0,0.08);
+$transition: 0.25s ease;
+
+// ============================================================
+// TYPOGRAPHY
+// ============================================================
+
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-weight: 700;
+}
+
+// ============================================================
+// NAVIGATION
+// ============================================================
+
+.masthead {
+  border-bottom: 1px solid $border;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+}
+
+.greedy-nav a:hover {
+  text-decoration: none;
+  color: $primary;
+}
+
+// ============================================================
+// AUTHOR SIDEBAR
+// ============================================================
+
+.author__avatar img {
+  border-radius: 50%;
+  border: 3px solid $bg-light;
+  box-shadow: $shadow;
+  transition: transform $transition;
+  
+  &:hover {
+    transform: scale(1.03);
+  }
+}
+
+.author__content {
+  .author__name {
+    font-weight: 700;
+  }
+}
+
+.author__urls-wrapper {
+  .author__urls {
+    li a {
+      padding: 0.4rem 0.6rem;
+      border-radius: 6px;
+      transition: all $transition;
+      
+      &:hover {
+        background: $bg-light;
+        color: $primary;
+        text-decoration: none;
+      }
+    }
+  }
+}
+
+// ============================================================
+// CONTENT CARDS
+// ============================================================
+
+.archive__item {
+  background: #fff;
+  border: 1px solid $border;
+  border-radius: $radius;
+  padding: 1.25rem;
+  margin-bottom: 1.25rem;
+  transition: all $transition;
+  
+  &:hover {
+    transform: translateY(-3px);
+    box-shadow: $shadow;
+    border-color: darken($border, 5%);
+  }
+}
+
+.archive__item-title {
+  font-weight: 600;
+  
+  a {
+    color: $text-dark;
+    
+    &:hover {
+      color: $primary;
+      text-decoration: none;
+    }
+  }
+}
+
+// ============================================================
+// BUTTONS & LINKS
+// ============================================================
+
+.btn {
+  border-radius: 6px;
+  transition: all $transition;
+  
+  &:hover {
+    transform: translateY(-1px);
+  }
+}
+
+a {
+  color: $primary;
+  transition: color $transition;
+  
+  &:hover {
+    color: $primary-dark;
+  }
+}
+
+// ============================================================
+// FOOTER
+// ============================================================
+
+.page__footer {
+  background: $text-dark;
+  color: rgba(255,255,255,0.8);
+  
+  a {
+    color: rgba(255,255,255,0.9);
+    
+    &:hover {
+      color: #fff;
+    }
+  }
+}
+
+// ============================================================
+// CODE BLOCKS
+// ============================================================
+
+pre, code {
+  border-radius: 6px;
+}
+
+pre {
+  background: #1e293b;
+  padding: 1rem;
+}
+
+// ============================================================
+// RESPONSIVE
+// ============================================================
+
+@media (max-width: 768px) {
+  .archive__item {
+    padding: 1rem;
+  }
+}
+
+// ============================================================
+// DARK MODE (auto-detect only)
+// ============================================================
+
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #0f172a;
+    color: #e2e8f0;
+  }
+  
+  h1, h2, h3, h4, h5, h6,
+  .author__name,
+  .archive__item-title a {
+    color: #f1f5f9;
+  }
+  
+  p, li {
+    color: #cbd5e1;
+  }
+  
+  .masthead {
+    background: rgba(15, 23, 42, 0.95);
+    border-color: #334155;
+  }
+  
+  .archive__item {
+    background: #1e293b;
+    border-color: #334155;
+  }
+  
+  .author__urls li a:hover {
+    background: #334155;
+  }
+  
+  code {
+    background: #334155;
+  }
+}
+
+// ============================================================
+// SMOOTH ANIMATIONS
+// ============================================================
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.page__content {
+  animation: fadeIn 0.4s ease-out;
+}
