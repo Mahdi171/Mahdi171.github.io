@@ -79,6 +79,8 @@ Services
 
 Past Events
 ======
+- <b> 2026-03-[01-07] </b> Financial Crypto 2026.
+- <b> 2026-01-30 </b> Attended [PQCSA in Brussels](https://www.esat.kuleuven.be/cosic/events/pqcsa-workshop-pqc-migration/program/).
 - <b> 2025-09-[11-12] </b> Attended [ENISA and PQCSA](https://www.esat.kuleuven.be/cosic/events/standardization-pqc-fundamentals/) in Athens, Greece.
 - <b> 2025-[05-24-06-21] </b> Visited [Prof. Sushmita Ruj](https://research.unsw.edu.au/people/associate-professor-sushmita-ruj) at UNSW in Sydney, Australia.
 - <b> 2025-05-[18-23] </b> Visited [Prof. Jae Hong Seo](https://sites.google.com/site/jhsbhs/) at Hanyang University in Seoul, South Korea.

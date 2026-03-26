@@ -8,15 +8,18 @@ redirect_from:
   - /about.html
 ---
 
-I am currently co-founder and Director at [Soundness labs](https://soundness.xyz) and a PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/).
+I am co-founder and Director at [Soundness labs](https://soundness.xyz) and PostDoc (Part-time) at [COSIC](https://www.esat.kuleuven.be/cosic/), [KU Leuven](https://www.kuleuven.be/kuleuven) working with [Prof. Bart Preneel](https://www.esat.kuleuven.be/cosic/people/bart-preneel/).
 
 During my PhD, I have been mainly working on privacy-enhancing techniques in distributed systems, with a focus on their applications on Blockchain space (Link to my [Thesis](../files/thesis_final_version.pdf)). I have collaborated on multiple research papers and gained valuable experience working with global teams and leading companies. In summer 2023, I was a research intern at [Mysten Labs](https://mystenlabs.com/), cryptography team.
 
-These days, I am primarily focused on Accountable Threshold Signatures, Traceable Secret Sharing and more efficient decentralized zk proofs verification layers.
+These days, I am primarily focused on Post-Quantum for Blockchain and Indentity systems.
 Feel free to reach out to me with any questions or for collaboration opportunities.
 
 News
 ------
+- <b> 2026-03-30 </b> Talk accepted to [zkSummit](https://www.zksummit.com/).
+- <b> 2026-03-25 </b> Two talks accepted to [PrivCrypt 2026](https://privcryptworkshop.github.io./) (affiliated with Eurocrypt 2026).
+- <b> 2026-03-04 </b> Presented PQchain at FC'26. Link to [slides](../_talks/2026-03-04.md).
 - <b> 2025-11-29 </b> New eprint is out. [Multi-Verifier Keyed-Verification Anonymous Credentials](https://eprint.iacr.org/2025/2156.pdf).
 - <b> 2025-11-24 </b> [Post-Quantum Readiness in EdDSA Chains](https://eprint.iacr.org/2025/1368.pdf) got accepted to [FC'26](https://fc26.ifca.ai/) -- later joined author.
 - <b> 2025-11-15 </b> Build a tool to [visualize recent results on proximity gap](https://proximity.sedaghat.xyz/).
@@ -26,7 +29,9 @@ News
 
 Upcoming Events
 ------
-- <b> 2026-03-[01-07] </b> Financial Crypto 2026.
+- <b> 2026-04-[19-24] </b> To attend [Privacy-Preserving Authentication Dagstuhl Seminar](https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26171), Germany.
+- <b> 2026-05-07 </b> To attend [zkSummit](https://www.zksummit.com/) and give a talk in Rome, Italy.
+- <b> 2026-07-[02-03] </b> To attend [4th Edition of the TUM Blockchain&Cybersecurity Salon](https://blockchain.salon.net.cit.tum.de/#4th-edition-of-the-tum-blockchaincybersecurity-salon) and give a talk.
 
 Past Events
 ------
