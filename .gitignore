@@ -6,3 +6,4 @@ vendor/
 
 # Backups
 backup_*/
+.env
