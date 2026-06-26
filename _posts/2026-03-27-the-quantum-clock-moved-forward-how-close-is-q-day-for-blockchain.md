@@ -8,7 +8,7 @@ redirect_from:
   - /blog/the-quantum-clock-moved-forward-how-close-is-q-day-for-blockchain/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 Three research and industry developments landed between February and late March 2026. None of them announced that quantum computers had broken blockchain cryptography. Though taken together, they mark a turning point that the blockchain industry cannot afford to sleep through. The qubit requirements to break elliptic curve cryptography fell by 44 percent. The physical qubit requirements to break RSA fell by 90 percent. And Google, the company that builds quantum hardware and employs the researchers behind the first paper, named 2029 as the year it expects to need protection. Google is among the major tech companies actively building quantum computers, and its timeline suggests a relatively early arrival of Q-Day. In other words, they are not taking a conservative or hedging stance on when quantum systems could threaten current cryptography.
 

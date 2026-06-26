@@ -8,7 +8,7 @@ redirect_from:
   - /blog/mpc-wallets-the-post-quantum-migration/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 Multi-party computation changed the security model for institutional custody. The core promise is distribution of trust: no single server, no single employee, no single cloud region holds enough to sign a transaction alone. When Fireblocks, Dfns, or Coinbase runs a threshold signing protocol, the private key never stores in one place. An attacker who compromises one co-signer learns nothing useful. The security guarantees are real, well-audited, and represent years of serious cryptographic engineering.
 

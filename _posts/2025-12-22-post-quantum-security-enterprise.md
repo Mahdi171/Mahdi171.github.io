@@ -8,7 +8,7 @@ redirect_from:
   - /blog/post-quantum-security-enterprise/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 TLDR; Most discussions about quantum computing and blockchains start with a technical question: _When will quantum computers actually break today’s cryptography?_
 

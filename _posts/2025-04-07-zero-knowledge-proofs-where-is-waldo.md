@@ -8,7 +8,7 @@ redirect_from:
   - /blog/zero-knowledge-proofs-where-is-waldo/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 In this article, we’re starting a journey into the world of **zero-knowledge proofs (ZKPs)**—one of the most exciting and powerful cryptographic tools in shaping the Sound Internet. As this is the bockbone of Soundness labs, our goal is to make these concepts approachable for all Soundies, especially those who are interested in building cool, efficient, and privacy-preserving dApps, even if they have no deep background in cryptography.
 
@@ -33,7 +33,6 @@ Every zero-knowledge proof is built on three foundational properties:
 2. **Soundness**: If the statement is false, no cheating prover can convince the verifier otherwise. (This is where our company name, Soundness Labs, comes from! )
 
 3. **Zero-Knowledge**: The verifier learns nothing beyond the truth of the statement—no secret leaks, no extra hints.
-
 
 These principles create a strong framework for trust without exposure.
 
@@ -72,7 +71,6 @@ This commitment has two magical properties:
 - **Binding**: Once the prover commits to an image, they can’t change it later.
 
  **Hiding**: The verifier can’t see what’s inside until the prover reveals it.
-
 
 Now, when the prover sends over the cropped Waldo snippet, the verifier can check that it really matches the image they originally committed to.
 
@@ -128,13 +126,11 @@ Common zkApp use cases include:
 
 - Claiming an airdrop without revealing your Web2 identity
 
-
 A typical zkApp has two parts:
 
 1. **A prover** — written in Rust and compiled to either a custom-circuit or a zkVM, which generates a proof
 
 2. **A verifier** — deployed either of-chain or on-chain to verify the validity of the proof and perform next steps if the proof passes
-
 
 The hard part used to be getting these proofs on-chain. That’s what Soundness Layer solves.
 
@@ -158,32 +154,33 @@ We take a **Google-issued JWT** and verify that:
 
 - The full email is never revealed
 
-
 ### What It Looks Like in SP1
 
 Here’s the SP1 zkVM program that runs this logic:
 
+```rust
 fn main() {
+ // Load Google public key + expected domain
+ let public_key_der = from_slice::<Vec<u8>>(&read_public_input()).unwrap();
+ let expected_domain = from_slice::<String>(&read_public_input()).unwrap();
 
- let public\_key\_der = from\_slice::<Vec<u8>>(&read\_public\_input()).unwrap();
- let expected\_domain = from\_slice::<String>(&read\_public\_input()).unwrap();
+ // Load the full JWT input as private input
+ let jwt = from_slice::<JWT>(&read_private_input()).unwrap();
 
+ // Reconstruct the signed message and verify it
+ let hashed_message = sha256(jwt.header_and_payload());
+ let verified = rsa_verify(&jwt.signature, &public_key_der, &hashed_message);
 
- let jwt = from\_slice::<JWT>(&read\_private\_input()).unwrap();
-
-
- let hashed\_message = sha256(jwt.header\_and\_payload());
- let verified = rsa\_verify(&jwt.signature, &public\_key\_der, &hashed\_message);
-
-
+ // Extract the domain and compare
  let domain = jwt.domain();
- let domain\_matches = domain == expected\_domain;
+ let domain_matches = domain == expected_domain;
 
-
- commit(&domain);
- commit(&verified);
- commit(&domain\_matches);
+ // Commit results to public output
+ commit(&domain); // visible
+ commit(&verified); // visible
+ commit(&domain_matches); // visible
 }
+```
 
 ### What Gets Revealed?
 
@@ -195,7 +192,6 @@ The proof only reveals:
 
 - Whether the domain matched the expected one (`true`)
 
-
 But not:
 
 - The user’s full email
@@ -203,7 +199,6 @@ But not:
 - Their identity
 
 - The original JWT
-
 
 In other words, the user can prove:
 
@@ -227,7 +222,6 @@ This example shows what zkApps make possible:
 
 - **Private computation in a public world**
 
-
 And more importantly — it shows that you can build these things _today_, in Rust, without writing cryptographic constraints.
 
 We abstract away the proving system, the onchain verifier, and the integration plumbing. You just write your logic, prove it with SP1, and send it onchain using Soundness Layer.
@@ -243,7 +237,6 @@ In the next post, we’ll help you:
 - Deploy a zkApp to Sui using Soundness Layer
 
 - Explore advanced use cases (Sudoku, airdrops, anonymous voting)
-
 
 Whether you’re building a stealth startup, a game, a DAO tool, or a meme project, zk can unlock something powerful — and we’re here to make that real for you.
 
@@ -279,13 +272,11 @@ zkApps are applications that use zero-knowledge proofs to keep certain data priv
 
 - Claiming an airdrop without revealing your Web2 identity
 
-
 A typical zkApp has two parts:
 
 1. **A prover** — who wants to prove a fact while keeping some details hidden. To do so, we need to write a circuit using domain specific languages (DSL) like Circom or Noir or High Level one like Rust or WASM, and compiled to either a custom circuit or a zkVM program, which generates a proof.
 
 2. **A verifier** — who wants to check the validity of the claims, deployed either of-chain or on-chain to verify the validity of the proof and perform next steps if the proof passes
-
 
 DSLs often require deep cryptographic knowledge and can take weeks—or even months—to develop and audit. zk virtual machines like SP1 offer a more practical approach, making it easier to build zkApps without writing circuits using Rust, WASM, etc. This comes with a high cost for proof generation but for some usecases this is not a big deal. Generating the proof is only half the battle—verifying it on-chain can be just as challenging. Some L1s are prohibitively expensive, with on-chain verification costing upwards of $20, or they simply can’t support it efficiently. That’s exactly what Soundness Layer solves.
 
@@ -309,7 +300,6 @@ What We Do here is we take a **Google-issued JWT** and verify that:
 
 - The full email is never revealed
 
-
 Here’s the SP1 zkVM program that runs this logic:
 
 https://github.com/SoundnessLabs/sp1-sui/blob/main/examples/sp1-jwt-verify-email-domain/program/src/main.rs
@@ -322,7 +312,6 @@ What Gets Revealed?
 
 - Whether the domain matched the expected one (true)
 
-
 But not:
 
 - The user’s full email address
@@ -330,7 +319,6 @@ But not:
 - Their Web2 identity
 
 - The original JWT
-
 
 In other words, the user can prove:
 
@@ -354,7 +342,6 @@ Why This Matters? This example shows what zkApps make possible:
 
 - **Private computation in a public world**
 
-
 And more importantly — it shows that you can build these things _today_, in Rust, without writing cryptographic constraints.
 
 We abstract away the proving system, the onchain verifier, and the integration plumbing. You just write your logic, prove it with your zkVM of choice, and settle them onchain using Soundness Layer.
@@ -370,7 +357,6 @@ In the next post, we’ll help you:
 - Deploy a zkApp to Sui using Soundness Layer
 
 - Explore advanced use cases (Sudoku, targeted airdrops, anonymous voting)
-
 
 Whether you’re building a stealth startup, a game, a DAO tool, or a meme project, zk can unlock something powerful — and we’re here to make that real for you.
 

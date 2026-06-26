@@ -8,7 +8,7 @@ redirect_from:
   - /blog/blockchains-wont-magically-upgrade-to-the-post-quantum-era/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 We are facing exciting times, both stressful and intellectually interesting. If you followed Twitter the last few weeks, you might have noticed that different influential actors are pulling the post-quantum migration deadline forward to 2029, well ahead of NIST's 2035 transition deadline and the broader consensus of 2032–2035. This accelerated timeline was set by Google, a company investing billions in quantum computing and gathering the best talent in the world.
 

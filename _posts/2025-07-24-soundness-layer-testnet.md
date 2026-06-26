@@ -8,7 +8,7 @@ redirect_from:
   - /blog/soundness-layer-testnet/
 ---
 
-> *These posts are mirrored from [Soundness](https://www.soundness.xyz/blog), an earlier project I built together with my co-founders.*
+> *These posts are mirrored from [Soundness](https://www.soundness.xyz/), an earlier project I built together with my co-founders.*
 
 ![Play games. Prove wins. Join us to build a Sound Internet, the future of a verifiable one.](/images/blog/soundness-layer-testnet/8RxDEPX3wULWdlKq4vUQ1CpQ21M.png)
 
@@ -47,7 +47,6 @@ Then your proof gets:
 2. **Attested by Soundness Layer** (proven & ready for on-chain Applications)
 
 3. All through **Sui**, as the coordination layer
-
 
 ## Game Flow: How It Works
 
@@ -148,7 +147,6 @@ Here’s how to get started:
 
 2. Follow the instructions in the **README** to reinstall everything cleanly.
 
-
 [https://github.com/SoundnessLabs/soundness-layer](https://github.com/SoundnessLabs/soundness-layer)
 
  **Important:**
@@ -165,7 +163,6 @@ Make sure you **don’t delete or modify the** `**key_store.json**` **file**—t
 - **Proofs are in Walrus**: Stored on **Walrus**, as a decentralized data storage.
 
 - **On-chain friendly**: Thanks to Soundness Layer, proofs are ready for the on-chain attestation.
-
 
 Your participation during this launch is already being counted under your registered public key, and we’ll be showcasing the results soon. Just play, generate proofs, and enjoy the experience. All your activity is securely tracked and verified.
 
